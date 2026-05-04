@@ -42,13 +42,55 @@
 body { font-family: 'Noto Sans TC', sans-serif; background: var(--bg); color: var(--text); font-size: 15px; line-height: 1.7; transition: background 0.3s, color 0.3s; }
 
 /* HERO */
-.hero { background: var(--hero-bg); color: #fff; padding: 56px 32px 44px; text-align: center; position: relative; overflow: hidden; }
-.hero::before { content: '東京'; font-family: 'Noto Serif TC', serif; font-size: 220px; font-weight: 600; color: rgba(255,255,255,0.04); position: absolute; top: -40px; left: 50%; transform: translateX(-50%); white-space: nowrap; pointer-events: none; letter-spacing: 0.1em; }
-.hero-tag { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--red); margin-bottom: 12px; }
+.hero {
+  background: #0d1b2a;
+  background-image:
+    radial-gradient(ellipse 120% 80% at 50% 100%, rgba(192,57,43,0.2) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 40% at 20% 60%, rgba(255,255,255,0.03) 0%, transparent 50%),
+    radial-gradient(ellipse 80% 60% at 80% 40%, rgba(255,255,255,0.04) 0%, transparent 50%);
+  color: #fff; padding: 56px 28px 36px; text-align: center; position: relative; overflow: hidden;
+}
+.hero-dots { position: absolute; inset: 0; pointer-events: none;
+  background-image: radial-gradient(circle, rgba(255,255,255,0.12) 1px, transparent 1px), radial-gradient(circle, rgba(255,255,255,0.06) 1.5px, transparent 1.5px);
+  background-size: 40px 40px, 80px 80px; background-position: 0 0, 20px 20px; }
+.hero-glow { position: absolute; bottom: -40px; left: 50%; transform: translateX(-50%); width: 400px; height: 160px;
+  background: radial-gradient(ellipse, rgba(192,57,43,0.22) 0%, transparent 70%); pointer-events: none; }
+.hero-skyline { position: absolute; bottom: 0; left: 0; right: 0; height: 56px; pointer-events: none; opacity: 0.1;
+  background:
+    linear-gradient(to top, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 100%) 4% bottom / 10px 28px no-repeat,
+    linear-gradient(to top, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 100%) 9% bottom / 6px 18px no-repeat,
+    linear-gradient(to top, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 100%) 14% bottom / 14px 44px no-repeat,
+    linear-gradient(to top, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 100%) 21% bottom / 8px 22px no-repeat,
+    linear-gradient(to top, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 100%) 28% bottom / 18px 38px no-repeat,
+    linear-gradient(to top, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 100%) 36% bottom / 5px 52px no-repeat,
+    linear-gradient(to top, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 100%) 44% bottom / 22px 30px no-repeat,
+    linear-gradient(to top, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 100%) 53% bottom / 12px 46px no-repeat,
+    linear-gradient(to top, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 100%) 61% bottom / 8px 24px no-repeat,
+    linear-gradient(to top, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 100%) 68% bottom / 16px 40px no-repeat,
+    linear-gradient(to top, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 100%) 77% bottom / 6px 32px no-repeat,
+    linear-gradient(to top, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 100%) 84% bottom / 20px 48px no-repeat,
+    linear-gradient(to top, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 100%) 92% bottom / 10px 26px no-repeat,
+    linear-gradient(to top, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 100%) 97% bottom / 7px 36px no-repeat; }
+.hero-tag { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: #e07060; margin-bottom: 12px; }
 .hero h1 { font-family: 'DM Serif Display', serif; font-size: 42px; font-weight: 400; letter-spacing: 0.02em; margin-bottom: 10px; }
-.hero-sub { font-size: 14px; color: rgba(255,255,255,0.55); letter-spacing: 0.08em; }
-.hero-dates { display: flex; justify-content: center; gap: 16px; margin-top: 24px; flex-wrap: wrap; }
-.hero-dates span { font-size: 13px; color: rgba(255,255,255,0.7); border: 1px solid rgba(255,255,255,0.15); padding: 6px 16px; border-radius: 20px; }
+.hero-sub { font-size: 14px; color: rgba(255,255,255,0.5); letter-spacing: 0.08em; }
+
+/* WEATHER */
+.weather-row { display: flex; justify-content: center; gap: 8px; margin-top: 16px; flex-wrap: wrap; }
+.weather-chip { font-size: 12px; color: rgba(255,255,255,0.8); background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.15); padding: 5px 12px; border-radius: 20px; display: flex; align-items: center; gap: 5px; }
+.weather-chip a { color: rgba(255,255,255,0.8); text-decoration: none; }
+.weather-note { font-size: 10px; color: rgba(255,255,255,0.35); margin-top: 6px; letter-spacing: 0.05em; }
+.weather-trip { display: flex; justify-content: center; gap: 6px; margin-top: 10px; flex-wrap: wrap; }
+.weather-day { text-align: center; background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.12); border-radius: 10px; padding: 6px 10px; min-width: 44px; }
+.weather-day .wd-date { font-size: 9px; color: rgba(255,255,255,0.45); margin-bottom: 3px; }
+.weather-day .wd-icon { font-size: 16px; line-height: 1; }
+.weather-day .wd-temp { font-size: 10px; color: rgba(255,255,255,0.7); margin-top: 3px; }
+
+/* SHARE BUTTON — small, under theme toggle */
+.share-btn { position: absolute; top: 58px; right: 20px; background: rgba(255,255,255,0.1); color: rgba(255,255,255,0.8); border: 1px solid rgba(255,255,255,0.2); border-radius: 20px; padding: 5px 11px; font-size: 11px; font-family: 'Noto Sans TC', sans-serif; cursor: pointer; z-index: 10; transition: background 0.2s; white-space: nowrap; }
+.share-btn:hover { background: rgba(255,255,255,0.2); }
+.share-toast { position: fixed; bottom: 80px; left: 50%; transform: translateX(-50%); background: rgba(0,0,0,0.75); color: #fff; font-size: 13px; padding: 8px 18px; border-radius: 20px; pointer-events: none; opacity: 0; transition: opacity 0.3s; z-index: 300; white-space: nowrap; }
+.share-toast.show { opacity: 1; }
 
 /* COUNTDOWN */
 .countdown { display: flex; justify-content: center; gap: 12px; margin-top: 24px; flex-wrap: wrap; }
@@ -204,6 +246,7 @@ body { font-family: 'Noto Sans TC', sans-serif; background: var(--bg); color: va
 @media (max-width: 600px) {
   .hero h1 { font-size: 30px; }
   .hero::before { font-size: 120px; }
+  .hero-sub { font-size: 11px; letter-spacing: 0.03em; }
   .tab { padding: 12px 12px; font-size: 12px; }
   .phrase-card { grid-template-columns: 1fr; }
   .day-map-btn { display: none; }
@@ -213,12 +256,20 @@ body { font-family: 'Noto Sans TC', sans-serif; background: var(--bg); color: va
 <body>
 
 <div class="hero">
+  <div class="hero-dots"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-skyline"></div>
   <button class="theme-btn" onclick="toggleTheme()" id="themeBtn">🌙 深色</button>
+  <button class="share-btn" onclick="shareTrip()">📤 分享</button>
   <p class="hero-tag">Japan · Tokyo · 2026</p>
   <h1>東京六日遊</h1>
   <p class="hero-sub">下町 &nbsp;·&nbsp; 鐵塔 &nbsp;·&nbsp; 澀谷 &nbsp;·&nbsp; 秋葉原 &nbsp;·&nbsp; 銀座 &nbsp;·&nbsp; 表參道</p>
   <div class="countdown" id="countdown"></div>
+  <div class="weather-row" id="weatherRow"></div>
+  <div class="weather-trip" id="weatherTrip"></div>
+  <p class="weather-note" id="weatherNote"></p>
 </div>
+<div class="share-toast" id="shareToast">✓ 網址已複製！</div>
 
 <nav class="tabs" id="tabs">
   <div class="tab active" data-tab="itinerary">🗓 行程總覽</div>
@@ -1055,6 +1106,56 @@ function toggleTheme() {
   applyTheme(html.getAttribute('data-theme') !== 'dark');
 }
 
+// WEATHER — show trip dates (Jun 10-15) if in range, else today
+async function loadWeather() {
+  const row   = document.getElementById('weatherRow');
+  const trip  = document.getElementById('weatherTrip');
+  const note  = document.getElementById('weatherNote');
+  const ICONS = {0:'☀️',1:'🌤',2:'⛅',3:'☁️',45:'🌫',48:'🌫',51:'🌦',53:'🌦',55:'🌧',61:'🌧',63:'🌧',65:'🌧',71:'❄️',80:'🌧',81:'🌧',82:'🌧',95:'⛈',96:'⛈',99:'⛈'};
+  const TRIPS = ['6/10','6/11','6/12','6/13','6/14','6/15'];
+  try {
+    const res = await fetch('https://api.open-meteo.com/v1/forecast?latitude=35.6762&longitude=139.6503&daily=temperature_2m_max,temperature_2m_min,weathercode&timezone=Asia%2FTokyo&forecast_days=16');
+    const d = await res.json();
+    const dates = d.daily.time;
+    const maxT  = d.daily.temperature_2m_max;
+    const minT  = d.daily.temperature_2m_min;
+    const codes = d.daily.weathercode;
+    const tripDates = ['2026-06-10','2026-06-11','2026-06-12','2026-06-13','2026-06-14','2026-06-15'];
+    const tripIdxs  = tripDates.map(td => dates.indexOf(td)).filter(i => i >= 0);
+    if (tripIdxs.length > 0) {
+      trip.innerHTML = tripIdxs.map((i, n) => `
+        <div class="weather-day">
+          <div class="wd-date">${TRIPS[n]}</div>
+          <div class="wd-icon">${ICONS[codes[i]] || '🌡'}</div>
+          <div class="wd-temp">${Math.round(maxT[i])}°/${Math.round(minT[i])}°</div>
+        </div>`).join('');
+      note.textContent = '* 行程期間天氣預報';
+    } else {
+      const icon = ICONS[codes[0]] || '🌡';
+      row.innerHTML = `
+        <div class="weather-chip">${icon} 東京今日</div>
+        <div class="weather-chip">🌡 ${Math.round(maxT[0])}° / ${Math.round(minT[0])}°C</div>`;
+      note.textContent = '* 出發前 16 天內顯示行程天氣預報';
+    }
+  } catch(e) {
+    row.innerHTML = '<div class="weather-chip">⛅ <a href="https://www.google.com/search?q=東京+6月+天氣" target="_blank">查看東京天氣 →</a></div>';
+  }
+}
+loadWeather();
+
+// SHARE
+function shareTrip() {
+  const url   = window.location.href;
+  const toast = document.getElementById('shareToast');
+  if (navigator.share) {
+    navigator.share({ title: '東京六日遊 2026', text: '6/10–6/15 東京行程', url });
+  } else {
+    navigator.clipboard.writeText(url).then(() => {
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 2200);
+    });
+  }
+}
 // TTS — Japanese voice
 function speak(text) {
   if (!window.speechSynthesis) return alert('您的瀏覽器不支援語音功能');
