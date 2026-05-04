@@ -1,0 +1,1072 @@
+<!DOCTYPE html>
+<html lang="zh-TW" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2026 東京六日遊 6/10–6/15</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Noto+Serif+TC:wght@400;600&family=DM+Serif+Display&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --red: #C0392B; --red-light: #f9ebe9;
+  --ink: #1a1a2e; --ink-mid: #2c3e50;
+  --muted: #6b7280; --border: #e5e7eb;
+  --bg: #fafaf8; --white: #ffffff;
+  --card: #ffffff; --card-border: #e5e7eb;
+  --text: #1a1a2e; --text-sec: #6b7280;
+  --day1: #e8f4f0; --day1a: #1a6b52;
+  --day2: #eef2fb; --day2a: #2c4a8f;
+  --day3: #fef5e7; --day3a: #9a6a00;
+  --day4: #f5e8f5; --day4a: #7b3fa0;
+  --day5: #e8f5fb; --day5a: #1a6a8f;
+  --day6: #fdecea; --day6a: #a0301a;
+  --transit-bg: #dff0f8; --transit-text: #1a6a8f;
+  --hero-bg: #1a1a2e;
+}
+[data-theme="dark"] {
+  --bg: #0f0f1a; --white: #1e1e2e; --card: #1e1e2e; --card-border: #2e2e40;
+  --text: #e8e8f0; --text-sec: #9090a8; --muted: #9090a8; --border: #2e2e40;
+  --red-light: #3a1a18;
+  --day1: #1a2e28; --day1a: #5eba9a;
+  --day2: #1a2040; --day2a: #7a9ae8;
+  --day3: #2e2008; --day3a: #e8c060;
+  --day4: #2a1a30; --day4a: #c080e0;
+  --day5: #0a2030; --day5a: #60b8e8;
+  --day6: #2e0e0a; --day6a: #e06050;
+  --transit-bg: #0a2030; --transit-text: #60b8e8;
+  --hero-bg: #0a0a18;
+}
+
+body { font-family: 'Noto Sans TC', sans-serif; background: var(--bg); color: var(--text); font-size: 15px; line-height: 1.7; transition: background 0.3s, color 0.3s; }
+
+/* HERO */
+.hero { background: var(--hero-bg); color: #fff; padding: 56px 32px 44px; text-align: center; position: relative; overflow: hidden; }
+.hero::before { content: '東京'; font-family: 'Noto Serif TC', serif; font-size: 220px; font-weight: 600; color: rgba(255,255,255,0.04); position: absolute; top: -40px; left: 50%; transform: translateX(-50%); white-space: nowrap; pointer-events: none; letter-spacing: 0.1em; }
+.hero-tag { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--red); margin-bottom: 12px; }
+.hero h1 { font-family: 'DM Serif Display', serif; font-size: 42px; font-weight: 400; letter-spacing: 0.02em; margin-bottom: 10px; }
+.hero-sub { font-size: 14px; color: rgba(255,255,255,0.55); letter-spacing: 0.08em; }
+.hero-dates { display: flex; justify-content: center; gap: 16px; margin-top: 24px; flex-wrap: wrap; }
+.hero-dates span { font-size: 13px; color: rgba(255,255,255,0.7); border: 1px solid rgba(255,255,255,0.15); padding: 6px 16px; border-radius: 20px; }
+
+/* COUNTDOWN */
+.countdown { display: flex; justify-content: center; gap: 12px; margin-top: 24px; flex-wrap: wrap; }
+.cd-box { text-align: center; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); border-radius: 12px; padding: 10px 16px; min-width: 60px; }
+.cd-num { font-size: 24px; font-weight: 700; color: #fff; line-height: 1; }
+.cd-label { font-size: 10px; color: rgba(255,255,255,0.5); letter-spacing: 0.1em; margin-top: 4px; }
+.cd-msg { font-size: 14px; color: #ffd700; margin-top: 8px; letter-spacing: 0.05em; }
+
+/* BACK TO TOP */
+.back-top { position: fixed; bottom: 24px; right: 20px; width: 42px; height: 42px; border-radius: 50%; background: var(--red); color: #fff; border: none; font-size: 18px; cursor: pointer; display: none; align-items: center; justify-content: center; box-shadow: 0 2px 12px rgba(0,0,0,0.2); z-index: 200; transition: opacity 0.2s; }
+.back-top.visible { display: flex; }
+
+/* THEME TOGGLE */
+.theme-btn { position: absolute; top: 20px; right: 20px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: #fff; padding: 8px 14px; border-radius: 20px; cursor: pointer; font-size: 13px; font-family: 'Noto Sans TC', sans-serif; transition: all 0.2s; z-index: 10; }
+.theme-btn:hover { background: rgba(255,255,255,0.2); }
+
+/* TABS */
+.tabs { display: flex; background: var(--card); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; overflow-x: auto; }
+.tab { padding: 14px 18px; font-size: 13px; font-weight: 500; color: var(--muted); cursor: pointer; white-space: nowrap; border-bottom: 2px solid transparent; transition: all 0.2s; }
+.tab:hover { color: var(--text); }
+.tab.active { color: var(--red); border-bottom-color: var(--red); }
+
+/* CONTENT */
+.content { max-width: 860px; margin: 0 auto; padding: 32px 20px 64px; }
+.section { display: none; }
+.section.active { display: block; }
+
+/* DAY BLOCKS */
+.day-block { margin-bottom: 32px; border: 1px solid var(--border); border-radius: 16px; overflow: hidden; background: var(--card); }
+.day-header { display: flex; align-items: center; gap: 14px; padding: 18px 20px; cursor: pointer; user-select: none; transition: background 0.2s; }
+.day-header:hover { background: var(--bg); }
+.day-badge { width: 52px; height: 52px; border-radius: 50%; display: flex; flex-direction: column; align-items: center; justify-content: center; flex-shrink: 0; }
+.day-badge .day-num { font-size: 18px; font-weight: 700; line-height: 1; }
+.day-badge .day-label { font-size: 9px; letter-spacing: 0.08em; opacity: 0.7; margin-top: 1px; }
+.day-info { flex: 1; }
+.day-title { font-family: 'Noto Serif TC', serif; font-size: 18px; font-weight: 600; color: var(--text); }
+.day-subtitle { font-size: 13px; color: var(--muted); margin-top: 2px; }
+.day-actions { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+.day-map-btn { font-size: 11px; font-weight: 600; color: #1a6a8f; text-decoration: none; background: var(--transit-bg); padding: 5px 10px; border-radius: 8px; white-space: nowrap; }
+[data-theme="dark"] .day-map-btn { color: var(--transit-text); }
+.day-toggle { font-size: 18px; color: var(--muted); transition: transform 0.3s; width: 24px; text-align: center; }
+.day-block.collapsed .day-toggle { transform: rotate(-90deg); }
+
+.day-body { padding: 0 20px 20px 20px; }
+.day-block.collapsed .day-body { display: none; }
+
+/* TIMELINE */
+.timeline { border-left: 2px solid var(--border); margin-left: 16px; padding-left: 24px; padding-top: 8px; }
+.item { position: relative; margin-bottom: 14px; padding-bottom: 14px; border-bottom: 1px solid var(--border); }
+.item:last-child { border-bottom: none; }
+.item::before { content: ''; width: 10px; height: 10px; border-radius: 50%; position: absolute; left: -30px; top: 5px; background: var(--border); border: 2px solid var(--card); }
+.item.transport::before { background: #94a3b8; }
+.item.food::before { background: #f97316; }
+.item.sight::before { background: #10b981; }
+.item.activity::before { background: #8b5cf6; }
+.item.hotel::before { background: #64748b; }
+.item.shrine::before { background: var(--red); }
+.item.bar::before { background: #1e293b; }
+.item-time { font-size: 11px; color: var(--muted); letter-spacing: 0.05em; margin-bottom: 4px; }
+.item-header { display: flex; align-items: flex-start; gap: 8px; margin-bottom: 4px; }
+.item-cat { font-size: 10px; font-weight: 700; letter-spacing: 0.08em; padding: 2px 8px; border-radius: 10px; white-space: nowrap; flex-shrink: 0; margin-top: 2px; }
+.cat-transport { background: #f1f5f9; color: #64748b; }
+.cat-food { background: #fff7ed; color: #c2410c; }
+.cat-sight { background: #f0fdf4; color: #166534; }
+.cat-activity { background: #faf5ff; color: #7c3aed; }
+.cat-hotel { background: #f8fafc; color: #475569; }
+.cat-shrine { background: #fff1f2; color: #be123c; }
+.cat-bar { background: #1e293b; color: #e2e8f0; }
+[data-theme="dark"] .cat-transport { background: #1a2030; color: #8090b8; }
+[data-theme="dark"] .cat-food { background: #2a1808; color: #f07030; }
+[data-theme="dark"] .cat-sight { background: #082010; color: #40b870; }
+[data-theme="dark"] .cat-activity { background: #1a1030; color: #a060e8; }
+[data-theme="dark"] .cat-hotel { background: #181828; color: #7080a0; }
+[data-theme="dark"] .cat-shrine { background: #2a0808; color: #e04060; }
+.item-name { font-weight: 600; font-size: 15px; color: var(--text); flex: 1; }
+.item-note { font-size: 13px; color: var(--muted); margin-top: 4px; }
+.item-alert { font-size: 12px; color: #b45309; background: #fffbeb; border-left: 2px solid #f59e0b; padding: 6px 10px; margin-top: 8px; border-radius: 0 6px 6px 0; }
+[data-theme="dark"] .item-alert { background: #2a2008; color: #e0a030; }
+.item-booking { font-size: 11px; font-weight: 600; color: #0369a1; background: #e0f2fe; padding: 2px 8px; border-radius: 10px; display: inline-block; margin-top: 6px; }
+[data-theme="dark"] .item-booking { background: #082030; color: #60b0e0; }
+
+/* TRANSIT CONNECTOR */
+.transit-row { display: flex; align-items: center; gap: 10px; padding: 6px 0; margin: -2px 0 4px 0; position: relative; }
+.transit-row::before { content: ''; width: 6px; height: 6px; border-radius: 50%; position: absolute; left: -28px; top: 50%; transform: translateY(-50%); background: var(--border); border: 2px solid var(--card); }
+.transit-icon { font-size: 13px; flex-shrink: 0; }
+.transit-text { font-size: 12px; color: var(--muted); flex: 1; line-height: 1.4; }
+.transit-text strong { color: var(--text); font-weight: 600; }
+.transit-map-btn { font-size: 11px; font-weight: 600; color: var(--transit-text); text-decoration: none; background: var(--transit-bg); padding: 3px 9px; border-radius: 8px; white-space: nowrap; flex-shrink: 0; }
+
+/* DAY COLORS */
+.d1 .day-badge { background: var(--day1); color: var(--day1a); }
+.d2 .day-badge { background: var(--day2); color: var(--day2a); }
+.d3 .day-badge { background: var(--day3); color: var(--day3a); }
+.d4 .day-badge { background: var(--day4); color: var(--day4a); }
+.d5 .day-badge { background: var(--day5); color: var(--day5a); }
+.d6 .day-badge { background: var(--day6); color: var(--day6a); }
+
+/* NOTICE */
+.notice-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; }
+.notice-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 18px 20px; }
+.notice-num { font-size: 11px; font-weight: 700; color: var(--red); letter-spacing: 0.1em; margin-bottom: 6px; }
+.notice-title { font-weight: 700; font-size: 15px; margin-bottom: 8px; color: var(--text); }
+.notice-body { font-size: 13px; color: var(--muted); line-height: 1.7; white-space: pre-line; }
+.notice-warn { background: #fff8e1; border-left: 3px solid #f59e0b; border-radius: 0 6px 6px 0; padding: 8px 12px; margin-top: 8px; font-size: 12px; color: #92400e; line-height: 1.6; }
+[data-theme="dark"] .notice-warn { background: #2a2008; color: #c0a040; }
+
+/* RESTAURANT */
+.rest-region { margin-bottom: 32px; }
+.rest-region h3 { font-size: 15px; font-weight: 700; color: var(--text); border-left: 3px solid var(--red); padding-left: 12px; margin-bottom: 14px; }
+.rest-grid { display: grid; gap: 12px; }
+.rest-card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 14px 16px; display: grid; grid-template-columns: 1fr auto; gap: 8px; align-items: start; }
+.rest-name { font-weight: 600; font-size: 14px; margin-bottom: 4px; color: var(--text); }
+.rest-detail { font-size: 12px; color: var(--muted); }
+.rest-rating { font-size: 13px; font-weight: 600; color: #d97706; white-space: nowrap; }
+.rest-price { font-size: 12px; color: var(--muted); text-align: right; margin-top: 2px; }
+.rest-hours { font-size: 11px; color: var(--muted); margin-top: 4px; }
+.rest-map { display: inline-flex; align-items: center; gap: 4px; font-size: 11px; font-weight: 600; color: var(--transit-text); text-decoration: none; margin-top: 6px; padding: 3px 8px; background: var(--transit-bg); border-radius: 8px; }
+
+/* SHOPPING */
+.shop-cat { margin-bottom: 32px; }
+.shop-cat h3 { font-size: 15px; font-weight: 700; color: var(--text); margin-bottom: 14px; display: flex; align-items: center; gap: 8px; }
+.shop-cat h3::before { content: ''; display: inline-block; width: 20px; height: 3px; background: var(--red); border-radius: 2px; }
+.shop-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 10px; }
+.shop-item { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 12px 14px; }
+.shop-item-name { font-size: 13px; font-weight: 600; margin-bottom: 4px; color: var(--text); }
+.shop-item-brand { font-size: 11px; color: var(--muted); }
+.shop-item-place { font-size: 11px; color: var(--transit-text); margin-top: 4px; }
+
+/* JAPANESE PHRASES */
+.phrase-cat { margin-bottom: 32px; }
+.phrase-cat-title { font-size: 16px; font-weight: 700; color: var(--text); margin-bottom: 14px; padding-bottom: 8px; border-bottom: 2px solid var(--red); display: flex; align-items: center; gap: 8px; }
+.phrase-grid { display: grid; gap: 10px; }
+.phrase-card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 14px 16px; display: grid; grid-template-columns: 1fr 1fr; gap: 8px 16px; align-items: start; }
+.phrase-zh { font-size: 13px; color: var(--muted); }
+.phrase-jp { font-size: 14px; font-weight: 600; color: var(--text); }
+.phrase-ro { font-size: 11px; color: var(--red); margin-top: 2px; font-style: italic; }
+.speak-btn { display: inline-flex; align-items: center; gap: 4px; font-size: 11px; font-weight: 600; color: var(--transit-text); background: var(--transit-bg); border: none; border-radius: 8px; padding: 3px 9px; margin-top: 6px; cursor: pointer; font-family: 'Noto Sans TC', sans-serif; }
+.speak-btn:active { opacity: 0.7; }
+
+/* EMERGENCY */
+.emg-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; margin-bottom: 32px; }
+.emg-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 18px 20px; }
+.emg-card.urgent { border-color: #ef4444; border-left: 4px solid #ef4444; }
+.emg-title { font-weight: 700; font-size: 15px; margin-bottom: 12px; color: var(--text); display: flex; align-items: center; gap: 8px; }
+.emg-row { display: flex; justify-content: space-between; align-items: flex-start; padding: 6px 0; border-bottom: 1px solid var(--border); font-size: 13px; gap: 12px; }
+.emg-row:last-child { border-bottom: none; }
+.emg-label { color: var(--muted); flex-shrink: 0; }
+.emg-val { font-weight: 600; color: var(--text); text-align: right; }
+.emg-val a { color: #ef4444; text-decoration: none; font-weight: 700; }
+.emg-addr { font-size: 12px; color: var(--muted); margin-top: 8px; line-height: 1.6; }
+.section-title { font-family: 'Noto Serif TC', serif; font-size: 18px; font-weight: 600; color: var(--text); margin-bottom: 16px; padding-bottom: 8px; border-bottom: 1px solid var(--border); }
+
+@media (max-width: 600px) {
+  .hero h1 { font-size: 30px; }
+  .hero::before { font-size: 120px; }
+  .tab { padding: 12px 12px; font-size: 12px; }
+  .phrase-card { grid-template-columns: 1fr; }
+  .day-map-btn { display: none; }
+}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <button class="theme-btn" onclick="toggleTheme()" id="themeBtn">🌙 深色</button>
+  <p class="hero-tag">Japan · Tokyo · 2026</p>
+  <h1>東京六日遊</h1>
+  <p class="hero-sub">下町 &nbsp;·&nbsp; 鐵塔 &nbsp;·&nbsp; 澀谷 &nbsp;·&nbsp; 秋葉原 &nbsp;·&nbsp; 銀座 &nbsp;·&nbsp; 表參道</p>
+  <div class="countdown" id="countdown"></div>
+</div>
+
+<nav class="tabs" id="tabs">
+  <div class="tab active" data-tab="itinerary">🗓 行程總覽</div>
+  <div class="tab" data-tab="notice">📋 行前須知</div>
+  <div class="tab" data-tab="restaurant">🍜 餐廳備案</div>
+  <div class="tab" data-tab="shopping">🛍 必買清單</div>
+  <div class="tab" data-tab="japanese">🗣 日文會話</div>
+  <div class="tab" data-tab="emergency">🆘 緊急資訊</div>
+</nav>
+
+<button class="back-top" id="backTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<div class="content">
+
+<!-- ========== ITINERARY ========== -->
+<div class="section active" id="itinerary">
+
+  <!-- DAY 1 -->
+  <div class="day-block d1 collapsed" id="day1">
+    <div class="day-header" onclick="toggleDay('day1')">
+      <div class="day-badge"><span class="day-num">1</span><span class="day-label">DAY</span></div>
+      <div class="day-info">
+        <div class="day-title">下町・東京灣</div>
+        <div class="day-subtitle">6月10日（三）&nbsp;·&nbsp; 抵達日</div>
+      </div>
+      <div class="day-actions">
+        <a class="day-map-btn" href="https://www.google.com/maps/dir/浅草寺/有楽町駅,東京/小網神社,東京中央区/日の出桟橋,東京/豊洲,東京/新宿思い出横丁" target="_blank" onclick="event.stopPropagation()">📍 今日地圖</a>
+        <span class="day-toggle">▾</span>
+      </div>
+    </div>
+    <div class="day-body">
+      <div class="timeline">
+        <div class="item transport">
+          <div class="item-time">00:10</div>
+          <div class="item-header"><span class="item-cat cat-transport">交通</span><span class="item-name">【6人組】虎航 IT216 出發</span></div>
+          <div class="item-note">TPE 桃機 T1 00:10 → HND 羽田 T3 04:25</div>
+        </div>
+        <div class="item transport">
+          <div class="item-time">02:40</div>
+          <div class="item-header"><span class="item-cat cat-transport">交通</span><span class="item-name">【2人組】捷星日本 GK012 出發</span></div>
+          <div class="item-note">TPE 桃機 T1 02:40 → NRT 成田 T3 07:00</div>
+        </div>
+        <div class="item hotel">
+          <div class="item-time">06:05</div>
+          <div class="item-header"><span class="item-cat cat-hotel">飯店</span><span class="item-name">【6人組】羽田 → 新宿 寄放行李</span></div>
+          <div class="item-note">京急線約 55 分 · POD SELECT HOTEL SHINJUKU</div>
+        </div>
+        <div class="transit-row">
+          <span class="transit-icon">🚇</span>
+          <span class="transit-text"><strong>新宿 → 淺草</strong>　都營大江戶線 or 銀座線　約 30 分　¥220</span>
+          <a class="transit-map-btn" href="https://www.google.com/maps/dir/?api=1&origin=新宿駅&destination=浅草寺&travelmode=transit" target="_blank">🗺 導航</a>
+        </div>
+        <div class="item food">
+          <div class="item-time">早餐</div>
+          <div class="item-header"><span class="item-cat cat-food">早餐</span><span class="item-name">鴨 to 蔥 淺草店</span></div>
+          <div class="item-note">24小時營業</div>
+        </div>
+        <div class="item hotel">
+          <div class="item-time">09:10</div>
+          <div class="item-header"><span class="item-cat cat-hotel">集合</span><span class="item-name">【2人組】成田 → 新宿 全員集合！</span></div>
+          <div class="item-note">N'EX 約90分 · 放好行李，出發淺草集合</div>
+        </div>
+        <div class="item sight">
+          <div class="item-time">上午</div>
+          <div class="item-header"><span class="item-cat cat-sight">觀光</span><span class="item-name">淺草寺 ＋ 仲見世通</span></div>
+        </div>
+        <div class="transit-row">
+          <span class="transit-icon">🚇</span>
+          <span class="transit-text"><strong>淺草 → 有樂町</strong>　地鐵日比谷線　約 20 分　¥210</span>
+          <a class="transit-map-btn" href="https://www.google.com/maps/dir/?api=1&origin=浅草駅&destination=有楽町駅&travelmode=transit" target="_blank">🗺 導航</a>
+        </div>
+        <div class="item food">
+          <div class="item-time">午餐</div>
+          <div class="item-header"><span class="item-cat cat-food">午餐</span><span class="item-name">日山 壽喜燒（有樂町）</span></div>
+          <span class="item-booking">Klook 已訂 8 位</span>
+        </div>
+        <div class="transit-row">
+          <span class="transit-icon">🚶</span>
+          <span class="transit-text"><strong>有樂町 → 小網神社（日本橋）</strong>　步行　約 12 分</span>
+          <a class="transit-map-btn" href="https://www.google.com/maps/dir/?api=1&origin=有楽町駅&destination=小網神社+東京都中央区&travelmode=walking" target="_blank">🗺 導航</a>
+        </div>
+        <div class="item shrine">
+          <div class="item-time">下午</div>
+          <div class="item-header"><span class="item-cat cat-shrine">神社</span><span class="item-name">小網神社（日本橋）求財強運</span></div>
+        </div>
+        <div class="transit-row">
+          <span class="transit-icon">🚶</span>
+          <span class="transit-text"><strong>日本橋 → HARBS 有樂町</strong>　步行　約 10 分</span>
+          <a class="transit-map-btn" href="https://www.google.com/maps/dir/?api=1&origin=小網神社+東京&destination=HARBS+有楽町ルミネ&travelmode=walking" target="_blank">🗺 導航</a>
+        </div>
+        <div class="item food">
+          <div class="item-time">14:30</div>
+          <div class="item-header"><span class="item-cat cat-food">下午茶</span><span class="item-name">HARBS LUMINE 有樂町 — 水果千層蛋糕</span></div>
+        </div>
+        <div class="transit-row">
+          <span class="transit-icon">🚇</span>
+          <span class="transit-text"><strong>有樂町 → 日の出桟橋</strong>　都營大江戶線 汐留站　約 15 分　¥220</span>
+          <a class="transit-map-btn" href="https://www.google.com/maps/dir/?api=1&origin=有楽町駅&destination=日の出桟橋+東京&travelmode=transit" target="_blank">🗺 導航</a>
+        </div>
+        <div class="item activity">
+          <div class="item-time">16:00</div>
+          <div class="item-header"><span class="item-cat cat-activity">活動</span><span class="item-name">江戸前汽船 もんじゃ屋形船</span></div>
+          <div class="item-alert">⚠ 15:30 提前抵達</div>
+          <span class="item-booking">Gmail 已訂 8 位</span>
+        </div>
+        <div class="transit-row">
+          <span class="transit-icon">🚇</span>
+          <span class="transit-text"><strong>→ 皮克斯展（豊洲）</strong>　ゆりかもめ or 有楽町線　約 20 分</span>
+          <a class="transit-map-btn" href="https://www.google.com/maps/dir/?api=1&origin=日の出桟橋+東京&destination=CREVIA+BASE+Tokyo+豊洲&travelmode=transit" target="_blank">🗺 導航</a>
+        </div>
+        <div class="item activity">
+          <div class="item-time">19:00</div>
+          <div class="item-header"><span class="item-cat cat-activity">活動</span><span class="item-name">【6人組】皮克斯展 CREVIA BASE Tokyo</span></div>
+          <span class="item-booking">Gmail 已訂 6 位</span>
+        </div>
+        <div class="item food">
+          <div class="item-time">晚餐</div>
+          <div class="item-header"><span class="item-cat cat-food">晚餐</span><span class="item-name">【2人組】極味屋 東京站店</span></div>
+        </div>
+        <div class="transit-row">
+          <span class="transit-icon">🚇</span>
+          <span class="transit-text"><strong>→ 新宿 思出橫丁</strong>　有楽町線 + 丸ノ内線　約 30 分　¥260</span>
+          <a class="transit-map-btn" href="https://www.google.com/maps/dir/?api=1&origin=豊洲駅&destination=新宿思い出横丁&travelmode=transit" target="_blank">🗺 導航</a>
+        </div>
+        <div class="item bar">
+          <div class="item-time">晚間</div>
+          <div class="item-header"><span class="item-cat cat-bar">小酌</span><span class="item-name">思出橫丁 居酒屋（新宿）</span></div>
+          <div class="item-note">吃完早點回去休息</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DAY 2 -->
+  <div class="day-block d2 collapsed" id="day2">
+    <div class="day-header" onclick="toggleDay('day2')">
+      <div class="day-badge"><span class="day-num">2</span><span class="day-label">DAY</span></div>
+      <div class="day-info">
+        <div class="day-title">花祭・鐵塔</div>
+        <div class="day-subtitle">6月11日（四）</div>
+      </div>
+      <div class="day-actions">
+        <a class="day-map-btn" href="https://www.google.com/maps/dir/新宿駅/白山神社,文京区/根津神社,東京/東京タワー/麻布台ヒルズ/渋谷駅/赤坂,東京" target="_blank" onclick="event.stopPropagation()">📍 今日地圖</a>
+        <span class="day-toggle">▾</span>
+      </div>
+    </div>
+    <div class="day-body">
+      <div class="timeline">
+        <div class="item food">
+          <div class="item-time">8:30</div>
+          <div class="item-header"><span class="item-cat cat-food">早餐</span><span class="item-name">らぁ麺や 嶋 — 超人氣早餐拉麵</span></div>
+          <div class="item-alert">⚠ 前一天 8:00 準時線上訂位！</div>
+          <div class="item-note">備案：しんぱち食堂 西武新宿店</div>
+        </div>
+        <div class="transit-row">
+          <span class="transit-icon">🚇</span>
+          <span class="transit-text"><strong>新宿 → 白山神社</strong>　都營三田線「白山站」　約 25 分　¥220</span>
+          <a class="transit-map-btn" href="https://www.google.com/maps/dir/?api=1&origin=新宿駅&destination=白山神社+東京都文京区&travelmode=transit" target="_blank">🗺 導航</a>
+        </div>
+        <div class="item shrine">
+          <div class="item-time">10:00</div>
+          <div class="item-header"><span class="item-cat cat-shrine">神社</span><span class="item-name">白山神社 繡球花祭</span></div>
+          <div class="item-note">文京あじさいまつり · 6月限定絕景</div>
+        </div>
+        <div class="transit-row">
+          <span class="transit-icon">🚶</span>
+          <span class="transit-text"><strong>白山神社 → 根津神社</strong>　步行　約 15 分</span>
+          <a class="transit-map-btn" href="https://www.google.com/maps/dir/?api=1&origin=白山神社+文京区&destination=根津神社&travelmode=walking" target="_blank">🗺 導航</a>
+        </div>
+        <div class="item shrine">
+          <div class="item-time">11:00</div>
+          <div class="item-header"><span class="item-cat cat-shrine">神社</span><span class="item-name">根津神社 — 千本鳥居・六月花卉</span></div>
+        </div>
+        <div class="transit-row">
+          <span class="transit-icon">🚇</span>
+          <span class="transit-text"><strong>根津 → 美濃金（神保町）</strong>　千代田線→半蔵門線　約 20 分　¥210</span>
+          <a class="transit-map-btn" href="https://www.google.com/maps/dir/?api=1&origin=根津駅&destination=美濃金+神保町&travelmode=transit" target="_blank">🗺 導航</a>
+        </div>
+        <div class="item food">
+          <div class="item-time">13:00</div>
+          <div class="item-header"><span class="item-cat cat-food">午餐</span><span class="item-name">美濃金 ひつまぶし 鰻魚飯</span></div>
+          <span class="item-booking">Gmail 已訂 8 位</span>
+        </div>
+        <div class="transit-row">
+          <span class="transit-icon">🚇</span>
+          <span class="transit-text"><strong>神保町 → 東京鐵塔</strong>　都營三田線「芝公園站」　約 15 分　¥210</span>
+          <a class="transit-map-btn" href="https://www.google.com/maps/dir/?api=1&origin=神保町駅&destination=東京タワー&travelmode=transit" target="_blank">🗺 導航</a>
+        </div>
+        <div class="item sight">
+          <div class="item-time">15:00</div>
+          <div class="item-header"><span class="item-cat cat-sight">觀光</span><span class="item-name">東京鐵塔 — 各角度拍照打卡</span></div>
+        </div>
+        <div class="transit-row">
+          <span class="transit-icon">🚶</span>
+          <span class="transit-text"><strong>東京鐵塔 → 麻布台之丘</strong>　步行　約 10 分</span>
+          <a class="transit-map-btn" href="https://www.google.com/maps/dir/?api=1&origin=東京タワー&destination=麻布台ヒルズ&travelmode=walking" target="_blank">🗺 導航</a>
+        </div>
+        <div class="item sight">
+          <div class="item-time">16:00</div>
+          <div class="item-header"><span class="item-cat cat-sight">觀光</span><span class="item-name">麻布台之丘</span></div>
+          <div class="item-note">33樓消費看能否上觀景台 / 吃 HARBS</div>
+        </div>
+        <div class="transit-row">
+          <span class="transit-icon">🚇</span>
+          <span class="transit-text"><strong>麻布台之丘 → 卡丁車（澀谷）</strong>　日比谷線　約 15 分　¥210</span>
+          <a class="transit-map-btn" href="https://www.google.com/maps/dir/?api=1&origin=麻布台ヒルズ&destination=Akiba+Kart+渋谷&travelmode=transit" target="_blank">🗺 導航</a>
+        </div>
+        <div class="item activity">
+          <div class="item-time">18:00</div>
+          <div class="item-header"><span class="item-cat cat-activity">活動</span><span class="item-name">卡丁車</span></div>
+          <div class="item-alert">⚠ 提前 30 分鐘到達</div>
+          <span class="item-booking">Klook 已訂 8 位</span>
+        </div>
+        <div class="transit-row">
+          <span class="transit-icon">🚇</span>
+          <span class="transit-text"><strong>澀谷 → Yakiniku Bondz（赤坂）</strong>　銀座線「溜池山王站」　約 10 分　¥180</span>
+          <a class="transit-map-btn" href="https://www.google.com/maps/dir/?api=1&origin=渋谷駅&destination=Yakiniku+Hormone+Bondz+赤坂&travelmode=transit" target="_blank">🗺 導航</a>
+        </div>
+        <div class="item food">
+          <div class="item-time">20:00</div>
+          <div class="item-header"><span class="item-cat cat-food">晚餐</span><span class="item-name">Yakiniku Hormone Bondz Akasaka — 超頂和牛燒肉</span></div>
+          <span class="item-booking">Gmail 已訂 8 位</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DAY 3 -->
+  <div class="day-block d3 collapsed" id="day3">
+    <div class="day-header" onclick="toggleDay('day3')">
+      <div class="day-badge"><span class="day-num">3</span><span class="day-label">DAY</span></div>
+      <div class="day-info">
+        <div class="day-title">澀谷</div>
+        <div class="day-subtitle">6月12日（五）</div>
+      </div>
+      <div class="day-actions">
+        <a class="day-map-btn" href="https://www.google.com/maps/dir/代々木公園/豊洲,東京/渋谷スクランブルスクエア/新宿,東京" target="_blank" onclick="event.stopPropagation()">📍 今日地圖</a>
+        <span class="day-toggle">▾</span>
+      </div>
+    </div>
+    <div class="day-body">
+      <div class="timeline">
+        <div class="item food">
+          <div class="item-time">7:00</div>
+          <div class="item-header"><span class="item-cat cat-food">早餐</span><span class="item-name">PATH — 超頂鬆餅</span></div>
+          <div class="item-note">7:00 出門排隊，人氣超高必早到</div>
+          <div class="item-note">備案：猿田彦珈琲 / Fuglen Tokyo</div>
+        </div>
+        <div class="transit-row">
+          <span class="transit-icon">🚇</span>
+          <span class="transit-text"><strong>代々木公園 → teamLab（豊洲）</strong>　千代田線→有楽町線　約 35 分　¥280</span>
+          <a class="transit-map-btn" href="https://www.google.com/maps/dir/?api=1&origin=代々木公園駅&destination=teamLab+Planets+TOKYO+豊洲&travelmode=transit" target="_blank">🗺 導航</a>
+        </div>
+        <div class="item activity">
+          <div class="item-time">10:30</div>
+          <div class="item-header"><span class="item-cat cat-activity">活動</span><span class="item-name">teamLab Planets TOKYO — 沉浸式數位藝術</span></div>
+          <div class="item-note">10:30–11:00 入場</div>
+          <span class="item-booking">Klook 已訂 8 位</span>
+        </div>
+        <div class="transit-row">
+          <span class="transit-icon">🚶</span>
+          <span class="transit-text"><strong>teamLab → 豊洲 LaLaport</strong>　步行　約 5 分</span>
+          <a class="transit-map-btn" href="https://www.google.com/maps/dir/?api=1&origin=teamLab+Planets+TOKYO&destination=LaLaport+豊洲&travelmode=walking" target="_blank">🗺 導航</a>
+        </div>
+        <div class="item food">
+          <div class="item-time">午餐</div>
+          <div class="item-header"><span class="item-cat cat-food">午餐</span><span class="item-name">豊洲 LaLaport 午餐</span></div>
+          <div class="item-note">teamLab 旁，餐廳選擇多</div>
+        </div>
+        <div class="transit-row">
+          <span class="transit-icon">🚇</span>
+          <span class="transit-text"><strong>豊洲 → 澀谷</strong>　有楽町線 + 山手線　約 40 分　¥310</span>
+          <a class="transit-map-btn" href="https://www.google.com/maps/dir/?api=1&origin=豊洲駅&destination=渋谷駅&travelmode=transit" target="_blank">🗺 導航</a>
+        </div>
+        <div class="item sight">
+          <div class="item-time">下午</div>
+          <div class="item-header"><span class="item-cat cat-sight">逛街</span><span class="item-name">澀谷十字路口 散步逛街</span></div>
+        </div>
+        <div class="transit-row">
+          <span class="transit-icon">🚶</span>
+          <span class="transit-text"><strong>澀谷 → 澀谷 SKY（Scramble Square）</strong>　步行　約 5 分</span>
+          <a class="transit-map-btn" href="https://www.google.com/maps/dir/?api=1&origin=渋谷スクランブル交差点&destination=渋谷スクランブルスクエア&travelmode=walking" target="_blank">🗺 導航</a>
+        </div>
+        <div class="item sight">
+          <div class="item-time">17:00</div>
+          <div class="item-header"><span class="item-cat cat-sight">觀光</span><span class="item-name">澀谷 SKY — 日落俯瞰東京全景</span></div>
+          <div class="item-alert">⚠ 兩週前官網搶票！</div>
+          <div class="item-note">備案：東京都廳免費展望台（北展望室 45F）</div>
+        </div>
+        <div class="transit-row">
+          <span class="transit-icon">🚶</span>
+          <span class="transit-text"><strong>澀谷 SKY → 焚火家</strong>　步行　約 5 分</span>
+          <a class="transit-map-btn" href="https://www.google.com/maps/dir/?api=1&origin=渋谷スクランブルスクエア&destination=焚火家+渋谷&travelmode=walking" target="_blank">🗺 導航</a>
+        </div>
+        <div class="item food">
+          <div class="item-time">20:00</div>
+          <div class="item-header"><span class="item-cat cat-food">晚餐</span><span class="item-name">焚火家 Takibiya 燒肉</span></div>
+          <span class="item-booking">Gmail 已訂 8 位</span>
+        </div>
+        <div class="transit-row">
+          <span class="transit-icon">🚇</span>
+          <span class="transit-text"><strong>澀谷 → Bar Centifolia（新宿）</strong>　JR 山手線　約 10 分　¥160</span>
+          <a class="transit-map-btn" href="https://www.google.com/maps/dir/?api=1&origin=渋谷駅&destination=Bar+Centifolia+新宿&travelmode=transit" target="_blank">🗺 導航</a>
+        </div>
+        <div class="item bar">
+          <div class="item-time">23:30</div>
+          <div class="item-header"><span class="item-cat cat-bar">酒吧</span><span class="item-name">Bar Centifolia — 精選調酒 Bar</span></div>
+          <div class="item-alert">⚠ 16天前需代訂服務預約</div>
+          <div class="item-note">備案：Bar Benfiddich / 新宿 Bar Ben Fiddich</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DAY 4 -->
+  <div class="day-block d4 collapsed" id="day4">
+    <div class="day-header" onclick="toggleDay('day4')">
+      <div class="day-badge"><span class="day-num">4</span><span class="day-label">DAY</span></div>
+      <div class="day-info">
+        <div class="day-title">上野・秋葉原・東京站</div>
+        <div class="day-subtitle">6月13日（六）</div>
+      </div>
+      <div class="day-actions">
+        <a class="day-map-btn" href="https://www.google.com/maps/dir/新宿駅/上野公園/アメヤ横丁,東京/秋葉原駅/東京駅" target="_blank" onclick="event.stopPropagation()">📍 今日地圖</a>
+        <span class="day-toggle">▾</span>
+      </div>
+    </div>
+    <div class="day-body">
+      <div class="timeline">
+        <div class="transit-row">
+          <span class="transit-icon">🚇</span>
+          <span class="transit-text"><strong>新宿 → 上野公園</strong>　JR 山手線「上野站」　約 30 分　¥210</span>
+          <a class="transit-map-btn" href="https://www.google.com/maps/dir/?api=1&origin=新宿駅&destination=上野公園&travelmode=transit" target="_blank">🗺 導航</a>
+        </div>
+        <div class="item sight">
+          <div class="item-time">上午</div>
+          <div class="item-header"><span class="item-cat cat-sight">觀光</span><span class="item-name">上野公園</span></div>
+          <div class="item-note">不忍池蓮花（6月綻放）· 早上涼爽宜散步</div>
+        </div>
+        <div class="transit-row">
+          <span class="transit-icon">🚶</span>
+          <span class="transit-text"><strong>上野公園 → 五條天神社・花園稲荷神社</strong>　步行　約 5 分（公園內）</span>
+          <a class="transit-map-btn" href="https://www.google.com/maps/dir/?api=1&origin=上野公園&destination=五條天神社+東京&travelmode=walking" target="_blank">🗺 導航</a>
+        </div>
+        <div class="item shrine">
+          <div class="item-time">上午</div>
+          <div class="item-header"><span class="item-cat cat-shrine">神社</span><span class="item-name">五條天神社・花園稲荷神社</span></div>
+        </div>
+        <div class="transit-row">
+          <span class="transit-icon">🚶</span>
+          <span class="transit-text"><strong>上野 → 阿美橫丁</strong>　步行　約 8 分</span>
+          <a class="transit-map-btn" href="https://www.google.com/maps/dir/?api=1&origin=上野公園&destination=アメヤ横丁&travelmode=walking" target="_blank">🗺 導航</a>
+        </div>
+        <div class="item food">
+          <div class="item-time">12:00</div>
+          <div class="item-header"><span class="item-cat cat-food">午餐</span><span class="item-name">阿美橫丁 海鮮丼</span></div>
+          <div class="item-note">磯丸水産 / 魚草，或逛攤吃 · 備案：上野 精養軒</div>
+        </div>
+        <div class="item sight">
+          <div class="item-time">13:30</div>
+          <div class="item-header"><span class="item-cat cat-sight">逛街</span><span class="item-name">阿美橫丁 — 乾貨・藥妝・鞋子・軍用雜貨</span></div>
+        </div>
+        <div class="transit-row">
+          <span class="transit-icon">🚇</span>
+          <span class="transit-text"><strong>上野 → 秋葉原</strong>　JR 山手線　約 4 分　¥160（或步行 20 分）</span>
+          <a class="transit-map-btn" href="https://www.google.com/maps/dir/?api=1&origin=上野駅&destination=秋葉原駅&travelmode=transit" target="_blank">🗺 導航</a>
+        </div>
+        <div class="item sight">
+          <div class="item-time">15:00</div>
+          <div class="item-header"><span class="item-cat cat-sight">逛街</span><span class="item-name">秋葉原 — 電器 / 扭蛋 / 同人</span></div>
+          <div class="item-note">Yodobashi・扭蛋之森・KOTOBUKIYA</div>
+        </div>
+        <div class="transit-row">
+          <span class="transit-icon">🚇</span>
+          <span class="transit-text"><strong>秋葉原 → 六厘舍（東京站）</strong>　JR 山手線　約 5 分　¥160</span>
+          <a class="transit-map-btn" href="https://www.google.com/maps/dir/?api=1&origin=秋葉原駅&destination=六厘舎+東京駅&travelmode=transit" target="_blank">🗺 導航</a>
+        </div>
+        <div class="item food">
+          <div class="item-time">18:00</div>
+          <div class="item-header"><span class="item-cat cat-food">晚餐</span><span class="item-name">六厘舍 沾麵 — 東京名門</span></div>
+        </div>
+        <div class="transit-row">
+          <span class="transit-icon">🚇</span>
+          <span class="transit-text"><strong>東京站 → VIRTÙ（銀座）</strong>　步行 or 丸ノ内線　約 10 分</span>
+          <a class="transit-map-btn" href="https://www.google.com/maps/dir/?api=1&origin=東京駅&destination=VIRTU+銀座&travelmode=transit" target="_blank">🗺 導航</a>
+        </div>
+        <div class="item bar">
+          <div class="item-time">20:00</div>
+          <div class="item-header"><span class="item-cat cat-bar">酒吧</span><span class="item-name">VIRTÙ — Aaron 推薦</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DAY 5 -->
+  <div class="day-block d5 collapsed" id="day5">
+    <div class="day-header" onclick="toggleDay('day5')">
+      <div class="day-badge"><span class="day-num">5</span><span class="day-label">DAY</span></div>
+      <div class="day-info">
+        <div class="day-title">銀座・表參道</div>
+        <div class="day-subtitle">6月14日（日）</div>
+      </div>
+      <div class="day-actions">
+        <a class="day-map-btn" href="https://www.google.com/maps/dir/新宿駅/築地場外市場/銀座,東京/表参道/明治神宮/竹下通り,原宿/新宿,東京" target="_blank" onclick="event.stopPropagation()">📍 今日地圖</a>
+        <span class="day-toggle">▾</span>
+      </div>
+    </div>
+    <div class="day-body">
+      <div class="timeline">
+        <div class="transit-row">
+          <span class="transit-icon">🚇</span>
+          <span class="transit-text"><strong>新宿 → 築地外市場</strong>　都營大江戶線「築地市場站」　約 20 分　¥220</span>
+          <a class="transit-map-btn" href="https://www.google.com/maps/dir/?api=1&origin=新宿駅&destination=築地場外市場&travelmode=transit" target="_blank">🗺 導航</a>
+        </div>
+        <div class="item food">
+          <div class="item-time">7:30</div>
+          <div class="item-header"><span class="item-cat cat-food">早餐</span><span class="item-name">築地外市場 — 玉子燒・海膽丼・生蠔</span></div>
+          <div class="item-note">週日 8:30 前攤位最豐富</div>
+        </div>
+        <div class="transit-row">
+          <span class="transit-icon">🚶</span>
+          <span class="transit-text"><strong>築地外市場 → 銀座</strong>　步行　約 15 分</span>
+          <a class="transit-map-btn" href="https://www.google.com/maps/dir/?api=1&origin=築地場外市場&destination=銀座+東京&travelmode=walking" target="_blank">🗺 導航</a>
+        </div>
+        <div class="item sight">
+          <div class="item-time">9:30</div>
+          <div class="item-header"><span class="item-cat cat-sight">逛街</span><span class="item-name">銀座散步</span></div>
+          <div class="item-note">GINZA SIX・Itoya（文具迷必逛）・銀座蔦屋書店</div>
+        </div>
+        <div class="item food">
+          <div class="item-time">11:30</div>
+          <div class="item-header"><span class="item-cat cat-food">午餐</span><span class="item-name">資生堂パーラー（洋食老舖）</span></div>
+          <div class="item-note">備案：銀座天一（天婦羅）</div>
+        </div>
+        <div class="transit-row">
+          <span class="transit-icon">🚇</span>
+          <span class="transit-text"><strong>銀座 → 表參道</strong>　地鐵銀座線「表参道站」　約 10 分　¥180</span>
+          <a class="transit-map-btn" href="https://www.google.com/maps/dir/?api=1&origin=銀座駅&destination=表参道駅&travelmode=transit" target="_blank">🗺 導航</a>
+        </div>
+        <div class="item sight">
+          <div class="item-time">13:30</div>
+          <div class="item-header"><span class="item-cat cat-sight">逛街</span><span class="item-name">表參道・貓街 — Omotesando Hills · Vintage</span></div>
+        </div>
+        <div class="item food">
+          <div class="item-time">15:00</div>
+          <div class="item-header"><span class="item-cat cat-food">下午茶</span><span class="item-name">Café Kitsuné 或 PIERRE HERMÉ</span></div>
+        </div>
+        <div class="transit-row">
+          <span class="transit-icon">🚶</span>
+          <span class="transit-text"><strong>表參道 → 明治神宮</strong>　步行　約 20 分</span>
+          <a class="transit-map-btn" href="https://www.google.com/maps/dir/?api=1&origin=表参道駅&destination=明治神宮&travelmode=walking" target="_blank">🗺 導航</a>
+        </div>
+        <div class="item shrine">
+          <div class="item-time">16:00</div>
+          <div class="item-header"><span class="item-cat cat-shrine">神社</span><span class="item-name">明治神宮 — 森林步道，鬧中取靜</span></div>
+        </div>
+        <div class="transit-row">
+          <span class="transit-icon">🚶</span>
+          <span class="transit-text"><strong>明治神宮 → 竹下通り</strong>　步行　約 10 分</span>
+          <a class="transit-map-btn" href="https://www.google.com/maps/dir/?api=1&origin=明治神宮&destination=竹下通り+原宿&travelmode=walking" target="_blank">🗺 導航</a>
+        </div>
+        <div class="item sight">
+          <div class="item-time">17:00</div>
+          <div class="item-header"><span class="item-cat cat-sight">逛街</span><span class="item-name">竹下通り 原宿 — 可愛服飾・棉花糖可麗餅</span></div>
+        </div>
+        <div class="transit-row">
+          <span class="transit-icon">🚇</span>
+          <span class="transit-text"><strong>原宿 → 新宿</strong>　JR 山手線　約 10 分　¥160</span>
+          <a class="transit-map-btn" href="https://www.google.com/maps/dir/?api=1&origin=原宿駅&destination=新宿駅&travelmode=transit" target="_blank">🗺 導航</a>
+        </div>
+        <div class="item food">
+          <div class="item-time">18:00</div>
+          <div class="item-header"><span class="item-cat cat-food">晚餐</span><span class="item-name">新宿最後晚餐</span></div>
+          <div class="item-note">割烹つな八（天婦羅）或 高野 B1 海鮮</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DAY 6 -->
+  <div class="day-block d6 collapsed" id="day6">
+    <div class="day-header" onclick="toggleDay('day6')">
+      <div class="day-badge"><span class="day-num">6</span><span class="day-label">DAY</span></div>
+      <div class="day-info">
+        <div class="day-title">新宿慢遊・返台</div>
+        <div class="day-subtitle">6月15日（一）</div>
+      </div>
+      <div class="day-actions">
+        <a class="day-map-btn" href="https://www.google.com/maps/dir/新宿駅/銀座,東京/新宿高島屋/成田空港" target="_blank" onclick="event.stopPropagation()">📍 今日地圖</a>
+        <span class="day-toggle">▾</span>
+      </div>
+    </div>
+    <div class="day-body">
+      <div class="timeline">
+        <div class="item transport">
+          <div class="item-header"><span class="item-cat cat-transport">重要</span><span class="item-name">【6人組】凌晨 02:30 從新宿出發前往羽田</span></div>
+          <div class="item-alert">⚠ IT217 羽田 HND 05:25 出發 → TPE 桃機 T1 08:00 抵達</div>
+        </div>
+        <div class="item hotel">
+          <div class="item-time">10:00</div>
+          <div class="item-header"><span class="item-cat cat-hotel">飯店</span><span class="item-name">【2人組】TATESHINA 飯店 Check Out</span></div>
+          <div class="item-note">行李寄存後出門</div>
+        </div>
+        <div class="transit-row">
+          <span class="transit-icon">🚇</span>
+          <span class="transit-text"><strong>新宿 → 根室花丸（銀座）</strong>　丸ノ内線「銀座站」　約 20 分　¥210</span>
+          <a class="transit-map-btn" href="https://www.google.com/maps/dir/?api=1&origin=新宿駅&destination=根室花まる+銀座店&travelmode=transit" target="_blank">🗺 導航</a>
+        </div>
+        <div class="item food">
+          <div class="item-time">午餐</div>
+          <div class="item-header"><span class="item-cat cat-food">午餐</span><span class="item-name">迴轉壽司 根室花丸 銀座店（排隊）</span></div>
+        </div>
+        <div class="transit-row">
+          <span class="transit-icon">🚇</span>
+          <span class="transit-text"><strong>銀座 → 新宿（伴手禮血拼）</strong>　丸ノ内線　約 20 分　¥210</span>
+          <a class="transit-map-btn" href="https://www.google.com/maps/dir/?api=1&origin=銀座駅&destination=新宿高島屋&travelmode=transit" target="_blank">🗺 導航</a>
+        </div>
+        <div class="item sight">
+          <div class="item-time">15:00</div>
+          <div class="item-header"><span class="item-cat cat-sight">逛街</span><span class="item-name">最後伴手禮血拼</span></div>
+          <div class="item-note">新宿高島屋・伊勢丹食品館・松本清・唐吉訶德</div>
+        </div>
+        <div class="item food">
+          <div class="item-time">18:30</div>
+          <div class="item-header"><span class="item-cat cat-food">晚餐</span><span class="item-name">最後一餐 — 新宿周邊隨意</span></div>
+        </div>
+        <div class="transit-row">
+          <span class="transit-icon">🚃</span>
+          <span class="transit-text"><strong>新宿 → 成田機場</strong>　N'EX 成田エクスプレス　約 90 分　¥3,070　20:10 前搭上</span>
+          <a class="transit-map-btn" href="https://www.google.com/maps/dir/?api=1&origin=新宿駅&destination=成田空港&travelmode=transit" target="_blank">🗺 導航</a>
+        </div>
+        <div class="item transport">
+          <div class="item-time">22:10</div>
+          <div class="item-header"><span class="item-cat cat-transport">交通</span><span class="item-name">【2人組】樂桃航空 MM627 返台</span></div>
+          <div class="item-note">NRT 成田 T1 22:10 → TPE 桃機 T1 01:00（6/16）</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- end itinerary -->
+
+<!-- ========== NOTICE ========== -->
+<div class="section" id="notice">
+  <div class="notice-grid">
+    <div class="notice-card"><div class="notice-num">01</div><div class="notice-title">行程安排</div><div class="notice-body">由 Ray 安排，以觀光旅遊為主，行程早緊晚鬆，有任何問題再麻煩提出討論。</div></div>
+    <div class="notice-card"><div class="notice-num">02</div><div class="notice-title">護照</div><div class="notice-body">很重要就對了 ✔</div></div>
+    <div class="notice-card"><div class="notice-num">03</div><div class="notice-title">行李</div><div class="notice-body">注意航班資訊寫的行李要求，確認托運件數及重量限制。</div><div class="notice-warn">⚠ 去程為凌晨 02:40 班機（捷星日本 GK012），6/9 晚間需到桃園機場。建議 6/9 提前準備好行李，23:00 前抵達機場辦理報到。</div></div>
+    <div class="notice-card"><div class="notice-num">04</div><div class="notice-title">時差</div><div class="notice-body">日本快台灣 1 小時（UTC+8 → UTC+9）。例：台灣 9:00 = 日本 10:00</div><div class="notice-warn">⚠ 訂餐廳、搶票、預約時請特別注意時區。</div></div>
+    <div class="notice-card"><div class="notice-num">05</div><div class="notice-title">電壓 / 插座</div><div class="notice-body">日本電壓 100V，插座雙平腳（A型）與台灣相同，無需轉接頭。</div><div class="notice-warn">⚠ 吹風機、電鍋等若僅標示 110V 或 220V，請勿直接使用。</div></div>
+    <div class="notice-card"><div class="notice-num">06</div><div class="notice-title">網路</div><div class="notice-body">• 實體 SIM 卡（桃園機場可購）
+• eSIM（推薦！直接手機設定啟用）
+• WiFi 分享器（桃園機場租借）</div><div class="notice-warn">⚠ iPhone 使用 eSIM：出發前確認手機未鎖卡（SIM-free）。</div></div>
+    <div class="notice-card"><div class="notice-num">07</div><div class="notice-title">穿著 / 天氣</div><div class="notice-body">6月東京白天約 25–28°C，梅雨季高濕，冷氣房偏乾。短袖 + 薄外套即可，備摺疊傘、護唇膏、乳液。</div></div>
+    <div class="notice-card"><div class="notice-num">08</div><div class="notice-title">大眾運輸</div><div class="notice-body">購買 Suica（西瓜卡）或 PASMO，搭 JR、地鐵、公車都可用。推薦在桃園機場或成田/羽田入境後購買。</div></div>
+    <div class="notice-card"><div class="notice-num">09</div><div class="notice-title">推薦 App</div><div class="notice-body">導航：Google Maps
+翻譯：Google 翻譯（相機即時翻譯超好用）
+餐廳：Tabelog / Hotpepper Gourmet
+電車：Yahoo! 乗換案内 / Navitime Japan
+交通卡：Suica app（iPhone 可綁 Apple Pay）
+支付：PayPay</div></div>
+    <div class="notice-card"><div class="notice-num">10</div><div class="notice-title">換錢</div><div class="notice-body">推薦：台灣銀行 / 兆豐銀行「網路預約換匯」。日本 7-11 ATM 可提款（約 ¥110/次）。</div><div class="notice-warn">⚠ 日本現金非常重要：神社、老店、部分餐廳多為現金。出國前致電銀行開通海外刷卡。</div></div>
+    <div class="notice-card"><div class="notice-num">11</div><div class="notice-title">住宿</div><div class="notice-body">【6人組】POD SELECT HOTEL SHINJUKU
+【2人組】TATESHINA 飯店</div></div>
+  </div>
+</div>
+
+<!-- ========== RESTAURANT ========== -->
+<div class="section" id="restaurant">
+  <div class="rest-region"><h3>淺草</h3><div class="rest-grid">
+    <div class="rest-card"><div><div class="rest-name">亀十（かめじゅう）</div><div class="rest-detail">銅鑼燒</div><div class="rest-hours">10:00–18:00</div><a class="rest-map" href="https://www.google.com/maps/search/亀十+浅草" target="_blank">📍 Google Maps</a></div><div><div class="rest-rating">★ 4.4</div><div class="rest-price">¥500</div></div></div>
+    <div class="rest-card"><div><div class="rest-name">大黒家天麩羅</div><div class="rest-detail">江戶前天丼（1887創業）</div><div class="rest-hours">11:00–20:30</div><a class="rest-map" href="https://www.google.com/maps/search/大黒家天麩羅+浅草" target="_blank">📍 Google Maps</a></div><div><div class="rest-rating">★ 4.2</div><div class="rest-price">¥1,800+</div></div></div>
+    <div class="rest-card"><div><div class="rest-name">洋食屋 ヨシカミ</div><div class="rest-detail">老舖洋食（1951創業）</div><div class="rest-hours">11:45–22:00</div><a class="rest-map" href="https://www.google.com/maps/search/ヨシカミ+浅草" target="_blank">📍 Google Maps</a></div><div><div class="rest-rating">★ 4.0</div><div class="rest-price">¥1,500+</div></div></div>
+  </div></div>
+  <div class="rest-region"><h3>根津・上野</h3><div class="rest-grid">
+    <div class="rest-card"><div><div class="rest-name">はん亭 根津本店</div><div class="rest-detail">串揚げ・有形文化財建築</div><div class="rest-hours">11:30–14:00 / 17:00–21:00</div><a class="rest-map" href="https://www.google.com/maps/search/はん亭+根津" target="_blank">📍 Google Maps</a></div><div><div class="rest-rating">★ 4.2</div><div class="rest-price">¥4,000+</div></div></div>
+    <div class="rest-card"><div><div class="rest-name">上野 精養軒</div><div class="rest-detail">老舖洋食（1872創業）</div><div class="rest-hours">11:00–20:30</div><a class="rest-map" href="https://www.google.com/maps/search/上野精養軒" target="_blank">📍 Google Maps</a></div><div><div class="rest-rating">★ 4.0</div><div class="rest-price">¥3,000+</div></div></div>
+  </div></div>
+  <div class="rest-region"><h3>豊洲</h3><div class="rest-grid">
+    <div class="rest-card"><div><div class="rest-name">豊洲場外食堂 魚金</div><div class="rest-detail">海鮮料理・海鮮丼</div><div class="rest-hours">11:00–23:00</div><a class="rest-map" href="https://www.google.com/maps/search/魚金+豊洲" target="_blank">📍 Google Maps</a></div><div><div class="rest-rating">★ 4.0</div><div class="rest-price">¥2,000+</div></div></div>
+    <div class="rest-card"><div><div class="rest-name">SCHMALZ BEER DINING</div><div class="rest-detail">德式料理・精釀啤酒</div><div class="rest-hours">11:30–23:00</div><a class="rest-map" href="https://www.google.com/maps/search/SCHMALZ+BEER+DINING+豊洲" target="_blank">📍 Google Maps</a></div><div><div class="rest-rating">★ 4.1</div><div class="rest-price">¥2,000+</div></div></div>
+    <div class="rest-card"><div><div class="rest-name">京鼎樓（ジンディンロウ）</div><div class="rest-detail">小籠包・台式料理</div><div class="rest-hours">11:00–22:00</div><a class="rest-map" href="https://www.google.com/maps/search/京鼎樓+豊洲" target="_blank">📍 Google Maps</a></div><div><div class="rest-rating">★ 4.0</div><div class="rest-price">¥1,500+</div></div></div>
+    <div class="rest-card"><div><div class="rest-name">Aloha Table</div><div class="rest-detail">夏威夷料理・Loco Moco</div><div class="rest-hours">11:00–22:00</div><a class="rest-map" href="https://www.google.com/maps/search/Aloha+Table+豊洲" target="_blank">📍 Google Maps</a></div><div><div class="rest-rating">★ 3.9</div><div class="rest-price">¥1,500+</div></div></div>
+  </div></div>
+  <div class="rest-region"><h3>築地</h3><div class="rest-grid">
+    <div class="rest-card"><div><div class="rest-name">壽司大（すしだい）</div><div class="rest-detail">高 CP 握壽司</div><div class="rest-hours">05:00–14:00</div><a class="rest-map" href="https://www.google.com/maps/search/すしだい+築地" target="_blank">📍 Google Maps</a></div><div><div class="rest-rating">★ 4.6</div><div class="rest-price">¥4,000</div></div></div>
+  </div></div>
+  <div class="rest-region"><h3>銀座</h3><div class="rest-grid">
+    <div class="rest-card"><div><div class="rest-name">煉瓦亭</div><div class="rest-detail">老舖洋食・蛋包飯（1895創業）</div><div class="rest-hours">11:15–21:00</div><a class="rest-map" href="https://www.google.com/maps/search/煉瓦亭+銀座" target="_blank">📍 Google Maps</a></div><div><div class="rest-rating">★ 4.2</div><div class="rest-price">¥3,000+</div></div></div>
+    <div class="rest-card"><div><div class="rest-name">銀座 篝（かがり）</div><div class="rest-detail">雞白湯拉麵・米其林</div><div class="rest-hours">11:00–22:00</div><a class="rest-map" href="https://www.google.com/maps/search/銀座篝+ラーメン" target="_blank">📍 Google Maps</a></div><div><div class="rest-rating">★ 4.4</div><div class="rest-price">¥1,500+</div></div></div>
+  </div></div>
+  <div class="rest-region"><h3>表參道・原宿</h3><div class="rest-grid">
+    <div class="rest-card"><div><div class="rest-name">LOTUS 原宿</div><div class="rest-detail">カフェ・洋食・くまショコラ</div><div class="rest-hours">11:00–22:00</div><a class="rest-map" href="https://www.google.com/maps/search/LOTUS+原宿" target="_blank">📍 Google Maps</a></div><div><div class="rest-rating">★ 4.1</div><div class="rest-price">¥1,500+</div></div></div>
+    <div class="rest-card"><div><div class="rest-name">パンとエスプレッソと</div><div class="rest-detail">麵包咖啡・テラス席</div><div class="rest-hours">08:00–20:00</div><a class="rest-map" href="https://www.google.com/maps/search/パンとエスプレッソと+表参道" target="_blank">📍 Google Maps</a></div><div><div class="rest-rating">★ 4.1</div><div class="rest-price">¥1,200+</div></div></div>
+    <div class="rest-card"><div><div class="rest-name">Nicolai Bergmann NOMU</div><div class="rest-detail">花藝咖啡・甜點</div><div class="rest-hours">11:00–20:00</div><a class="rest-map" href="https://www.google.com/maps/search/Nicolai+Bergmann+NOMU+表参道" target="_blank">📍 Google Maps</a></div><div><div class="rest-rating">★ 4.3</div><div class="rest-price">¥1,500+</div></div></div>
+    <div class="rest-card"><div><div class="rest-name">BUTTER MILK CHANNEL</div><div class="rest-detail">フライドチキン＆ワッフル</div><div class="rest-hours">11:00–21:00</div><a class="rest-map" href="https://www.google.com/maps/search/BUTTER+MILK+CHANNEL+原宿" target="_blank">📍 Google Maps</a></div><div><div class="rest-rating">★ 4.2</div><div class="rest-price">¥1,800+</div></div></div>
+  </div></div>
+  <div class="rest-region"><h3>新宿</h3><div class="rest-grid">
+    <div class="rest-card"><div><div class="rest-name">新宿中村屋 割烹</div><div class="rest-detail">老舖和食</div><div class="rest-hours">11:00–21:00</div><a class="rest-map" href="https://www.google.com/maps/search/新宿中村屋" target="_blank">📍 Google Maps</a></div><div><div class="rest-rating">★ 4.1</div><div class="rest-price">¥3,000+</div></div></div>
+    <div class="rest-card"><div><div class="rest-name">Golden Gai 各店</div><div class="rest-detail">小酒吧</div><div class="rest-hours">19:00–02:00</div><a class="rest-map" href="https://www.google.com/maps/search/新宿ゴールデン街" target="_blank">📍 Google Maps</a></div><div><div class="rest-rating">–</div><div class="rest-price">¥1,000–2,000</div></div></div>
+  </div></div>
+  <div class="rest-region"><h3>秋葉原</h3><div class="rest-grid">
+    <div class="rest-card"><div><div class="rest-name">万世ハンバーグ</div><div class="rest-detail">和牛漢堡排</div><div class="rest-hours">11:00–22:30</div><a class="rest-map" href="https://www.google.com/maps/search/万世ハンバーグ+秋葉原" target="_blank">📍 Google Maps</a></div><div><div class="rest-rating">★ 4.1</div><div class="rest-price">¥1,500</div></div></div>
+    <div class="rest-card"><div><div class="rest-name">鳥貴族 秋葉原店</div><div class="rest-detail">焼き鳥</div><div class="rest-hours">17:00–01:00</div><a class="rest-map" href="https://www.google.com/maps/search/鳥貴族+秋葉原" target="_blank">📍 Google Maps</a></div><div><div class="rest-rating">★ 3.9</div><div class="rest-price">¥1,000</div></div></div>
+  </div></div>
+</div>
+
+<!-- ========== SHOPPING ========== -->
+<div class="section" id="shopping">
+  <div class="shop-cat"><h3>藥妝</h3><div class="shop-list">
+    <div class="shop-item"><div class="shop-item-name">熱敷貼（めぐりズム）</div><div class="shop-item-brand">小林製藥</div><div class="shop-item-place">松本清 / 藥妝店</div></div>
+    <div class="shop-item"><div class="shop-item-name">蒸氣眼罩</div><div class="shop-item-brand">花王</div><div class="shop-item-place">松本清</div></div>
+    <div class="shop-item"><div class="shop-item-name">龍角散</div><div class="shop-item-brand">龍角散</div><div class="shop-item-place">藥妝店</div></div>
+    <div class="shop-item"><div class="shop-item-name">極潤玻尿酸化妝水</div><div class="shop-item-brand">肌研</div><div class="shop-item-place">松本清</div></div>
+    <div class="shop-item"><div class="shop-item-name">HABA 鯊烷油</div><div class="shop-item-brand">HABA</div><div class="shop-item-place">松本清 / HABA直營</div></div>
+    <div class="shop-item"><div class="shop-item-name">ANESSA 防曬乳</div><div class="shop-item-brand">資生堂</div><div class="shop-item-place">松本清 / 藥妝店</div></div>
+    <div class="shop-item"><div class="shop-item-name">DHC 膠原蛋白錠</div><div class="shop-item-brand">DHC</div><div class="shop-item-place">藥妝店</div></div>
+  </div></div>
+  <div class="shop-cat"><h3>伴手禮</h3><div class="shop-list">
+    <div class="shop-item"><div class="shop-item-name">白色戀人餅乾</div><div class="shop-item-brand">ISHIYA</div><div class="shop-item-place">東京車站 / 機場</div></div>
+    <div class="shop-item"><div class="shop-item-name">東京香蕉</div><div class="shop-item-brand">東京ばな奈</div><div class="shop-item-place">機場 / 東京車站</div></div>
+    <div class="shop-item"><div class="shop-item-name">PRESS BUTTER SAND</div><div class="shop-item-brand">焦糖奶油夾心餅</div><div class="shop-item-place">東京車站 / 機場</div></div>
+    <div class="shop-item"><div class="shop-item-name">New York Perfect Cheese</div><div class="shop-item-brand">NYC</div><div class="shop-item-place">東京車站 / 伊勢丹新宿</div></div>
+    <div class="shop-item"><div class="shop-item-name">資生堂パーラー糖果</div><div class="shop-item-brand">資生堂パーラー</div><div class="shop-item-place">銀座本店</div></div>
+    <div class="shop-item"><div class="shop-item-name">人形燒</div><div class="shop-item-brand">木村家本店</div><div class="shop-item-place">淺草 仲見世通</div></div>
+    <div class="shop-item"><div class="shop-item-name">手工仙貝 / 冰淇淋最中</div><div class="shop-item-brand">杵屋 / 淺草提燈最中</div><div class="shop-item-place">淺草 仲見世通</div></div>
+  </div></div>
+  <div class="shop-cat"><h3>食材 / 零食</h3><div class="shop-list">
+    <div class="shop-item"><div class="shop-item-name">一之鹽（天然鹽）</div><div class="shop-item-brand">各大超市</div><div class="shop-item-place">超市</div></div>
+    <div class="shop-item"><div class="shop-item-name">山椒七味粉</div><div class="shop-item-brand">各大超市</div><div class="shop-item-place">超市</div></div>
+    <div class="shop-item"><div class="shop-item-name">東京限定洋芋片</div><div class="shop-item-brand">Calbee</div><div class="shop-item-place">藥妝店 / 超市 / 機場</div></div>
+    <div class="shop-item"><div class="shop-item-name">宇治抹茶茶葉</div><div class="shop-item-brand">茶屋</div><div class="shop-item-place">上野 / 阿美橫丁</div></div>
+  </div></div>
+  <div class="shop-cat"><h3>服飾 / 鞋子</h3><div class="shop-list">
+    <div class="shop-item"><div class="shop-item-name">潮流 T-Shirt</div><div class="shop-item-brand">HUMAN MADE</div><div class="shop-item-place">澀谷 PARCO 1F</div></div>
+    <div class="shop-item"><div class="shop-item-name">日系選品服飾</div><div class="shop-item-brand">BEAMS / SHIPS</div><div class="shop-item-place">澀谷 / 新宿 伊勢丹</div></div>
+    <div class="shop-item"><div class="shop-item-name">JILL STUART</div><div class="shop-item-brand">公主風彩妝服飾</div><div class="shop-item-place">東急 Plaza 表參道原宿</div></div>
+    <div class="shop-item"><div class="shop-item-name">球鞋 Nike/Adidas/NB</div><div class="shop-item-brand">各品牌直營</div><div class="shop-item-place">秋葉原 / 宮下公園</div></div>
+    <div class="shop-item"><div class="shop-item-name">美國潮牌球鞋</div><div class="shop-item-brand">KITH</div><div class="shop-item-place">澀谷 MIYASHITA PARK 1F</div></div>
+  </div></div>
+  <div class="shop-cat"><h3>雜貨 / 文具 / 電器</h3><div class="shop-list">
+    <div class="shop-item"><div class="shop-item-name">TRAVELER'S Notebook</div><div class="shop-item-brand">Midori</div><div class="shop-item-place">Itoya 銀座</div></div>
+    <div class="shop-item"><div class="shop-item-name">高質感文具</div><div class="shop-item-brand">Itoya 伊東屋</div><div class="shop-item-place">Itoya 銀座本店</div></div>
+    <div class="shop-item"><div class="shop-item-name">卡通周邊</div><div class="shop-item-brand">Kiddy Land</div><div class="shop-item-place">表參道原宿</div></div>
+    <div class="shop-item"><div class="shop-item-name">耳機 / 相機 / 電子</div><div class="shop-item-brand">Yodobashi Akihabara</div><div class="shop-item-place">秋葉原</div></div>
+    <div class="shop-item"><div class="shop-item-name">扭蛋 / 動漫公仔</div><div class="shop-item-brand">扭蛋之森 / KOTOBUKIYA</div><div class="shop-item-place">秋葉原</div></div>
+  </div></div>
+</div>
+
+<!-- ========== JAPANESE PHRASES ========== -->
+<div class="section" id="japanese">
+
+  <div class="phrase-cat">
+    <div class="phrase-cat-title">🍽️ 餐廳用語</div>
+    <div class="phrase-grid">
+      <div class="phrase-card"><div><div class="phrase-zh">幾位？</div><div class="phrase-jp">何名様ですか？</div><div class="phrase-ro">Nannmei-sama desu ka?</div><button class="speak-btn" onclick="speak('何名様ですか')">🔊 播放</button></div><div><div class="phrase-zh">兩位</div><div class="phrase-jp">二名です</div><div class="phrase-ro">Futari desu</div><button class="speak-btn" onclick="speak('二名です')">🔊 播放</button></div></div>
+      <div class="phrase-card"><div><div class="phrase-zh">有預約</div><div class="phrase-jp">予約しています</div><div class="phrase-ro">Yoyaku shite imasu</div><button class="speak-btn" onclick="speak('予約しています')">🔊 播放</button></div><div><div class="phrase-zh">這個請給我</div><div class="phrase-jp">これをください</div><div class="phrase-ro">Kore wo kudasai</div><button class="speak-btn" onclick="speak('これをください')">🔊 播放</button></div></div>
+      <div class="phrase-card"><div><div class="phrase-zh">好吃！</div><div class="phrase-jp">おいしい！</div><div class="phrase-ro">Oishii!</div><button class="speak-btn" onclick="speak('おいしい')">🔊 播放</button></div><div><div class="phrase-zh">買單</div><div class="phrase-jp">お会計をお願いします</div><div class="phrase-ro">O-kaikei wo onegaishimasu</div><button class="speak-btn" onclick="speak('お会計をお願いします')">🔊 播放</button></div></div>
+      <div class="phrase-card"><div><div class="phrase-zh">分開結帳</div><div class="phrase-jp">別々でお願いします</div><div class="phrase-ro">Betsubetsu de onegaishimasu</div><button class="speak-btn" onclick="speak('別々でお願いします')">🔊 播放</button></div><div><div class="phrase-zh">不吃辣</div><div class="phrase-jp">辛いものは食べられません</div><div class="phrase-ro">Karai mono wa taberaremasen</div><button class="speak-btn" onclick="speak('辛いものは食べられません')">🔊 播放</button></div></div>
+      <div class="phrase-card"><div><div class="phrase-zh">外帶</div><div class="phrase-jp">テイクアウトをお願いします</div><div class="phrase-ro">Teikuauto wo onegaishimasu</div><button class="speak-btn" onclick="speak('テイクアウトをお願いします')">🔊 播放</button></div><div><div class="phrase-zh">菜單</div><div class="phrase-jp">メニューをください</div><div class="phrase-ro">Menyu wo kudasai</div><button class="speak-btn" onclick="speak('メニューをください')">🔊 播放</button></div></div>
+    </div>
+  </div>
+
+  <div class="phrase-cat">
+    <div class="phrase-cat-title">🛍️ 購物用語</div>
+    <div class="phrase-grid">
+      <div class="phrase-card"><div><div class="phrase-zh">這個多少錢？</div><div class="phrase-jp">これはいくらですか？</div><div class="phrase-ro">Kore wa ikura desu ka?</div><button class="speak-btn" onclick="speak('これはいくらですか')">🔊 播放</button></div><div><div class="phrase-zh">有沒有其他顏色？</div><div class="phrase-jp">他の色はありますか？</div><div class="phrase-ro">Hoka no iro wa arimasu ka?</div><button class="speak-btn" onclick="speak('他の色はありますか')">🔊 播放</button></div></div>
+      <div class="phrase-card"><div><div class="phrase-zh">可以試穿嗎？</div><div class="phrase-jp">試着してもいいですか？</div><div class="phrase-ro">Shichaku shite mo ii desu ka?</div><button class="speak-btn" onclick="speak('試着してもいいですか')">🔊 播放</button></div><div><div class="phrase-zh">可以退稅嗎？</div><div class="phrase-jp">免税になりますか？</div><div class="phrase-ro">Menzei ni narimasu ka?</div><button class="speak-btn" onclick="speak('免税になりますか')">🔊 播放</button></div></div>
+      <div class="phrase-card"><div><div class="phrase-zh">刷卡可以嗎？</div><div class="phrase-jp">カードで払えますか？</div><div class="phrase-ro">Ka-do de haraemasu ka?</div><button class="speak-btn" onclick="speak('カードで払えますか')">🔊 播放</button></div><div><div class="phrase-zh">這個，謝謝</div><div class="phrase-jp">これをもらいます</div><div class="phrase-ro">Kore wo moraimasu</div><button class="speak-btn" onclick="speak('これをもらいます')">🔊 播放</button></div></div>
+      <div class="phrase-card"><div><div class="phrase-zh">請給我袋子</div><div class="phrase-jp">袋をください</div><div class="phrase-ro">Fukuro wo kudasai</div><button class="speak-btn" onclick="speak('袋をください')">🔊 播放</button></div><div><div class="phrase-zh">有更大的尺寸嗎？</div><div class="phrase-jp">もっと大きいサイズはありますか？</div><div class="phrase-ro">Motto ookii saizu wa arimasu ka?</div><button class="speak-btn" onclick="speak('もっと大きいサイズはありますか')">🔊 播放</button></div></div>
+    </div>
+  </div>
+
+  <div class="phrase-cat">
+    <div class="phrase-cat-title">🚇 交通 / 問路</div>
+    <div class="phrase-grid">
+      <div class="phrase-card"><div><div class="phrase-zh">去___怎麼走？</div><div class="phrase-jp">___へはどう行けばいいですか？</div><div class="phrase-ro">___ e wa dou ikeba ii desu ka?</div><button class="speak-btn" onclick="speak('どう行けばいいですか')">🔊 播放</button></div><div><div class="phrase-zh">這裡是哪裡？</div><div class="phrase-jp">ここはどこですか？</div><div class="phrase-ro">Koko wa doko desu ka?</div><button class="speak-btn" onclick="speak('ここはどこですか')">🔊 播放</button></div></div>
+      <div class="phrase-card"><div><div class="phrase-zh">去新宿的票</div><div class="phrase-jp">新宿までの切符をください</div><div class="phrase-ro">Shinjuku made no kippu wo kudasai</div><button class="speak-btn" onclick="speak('新宿までの切符をください')">🔊 播放</button></div><div><div class="phrase-zh">在哪裡轉乘？</div><div class="phrase-jp">どこで乗り換えますか？</div><div class="phrase-ro">Doko de norikaemasu ka?</div><button class="speak-btn" onclick="speak('どこで乗り換えますか')">🔊 播放</button></div></div>
+      <div class="phrase-card"><div><div class="phrase-zh">叫計程車</div><div class="phrase-jp">タクシーを呼んでください</div><div class="phrase-ro">Takushi- wo yonde kudasai</div><button class="speak-btn" onclick="speak('タクシーを呼んでください')">🔊 播放</button></div><div><div class="phrase-zh">請去這個地址</div><div class="phrase-jp">この住所へお願いします</div><div class="phrase-ro">Kono ju-sho e onegaishimasu</div><button class="speak-btn" onclick="speak('この住所へお願いします')">🔊 播放</button></div></div>
+    </div>
+  </div>
+
+  <div class="phrase-cat">
+    <div class="phrase-cat-title">🏨 飯店用語</div>
+    <div class="phrase-grid">
+      <div class="phrase-card"><div><div class="phrase-zh">辦理入住</div><div class="phrase-jp">チェックインをお願いします</div><div class="phrase-ro">Chekku-in wo onegaishimasu</div><button class="speak-btn" onclick="speak('チェックインをお願いします')">🔊 播放</button></div><div><div class="phrase-zh">辦理退房</div><div class="phrase-jp">チェックアウトをお願いします</div><div class="phrase-ro">Chekku-auto wo onegaishimasu</div><button class="speak-btn" onclick="speak('チェックアウトをお願いします')">🔊 播放</button></div></div>
+      <div class="phrase-card"><div><div class="phrase-zh">可以寄放行李嗎？</div><div class="phrase-jp">荷物を預かってもらえますか？</div><div class="phrase-ro">Nimotsu wo azukatte moraemasu ka?</div><button class="speak-btn" onclick="speak('荷物を預かってもらえますか')">🔊 播放</button></div><div><div class="phrase-zh">WiFi 密碼是？</div><div class="phrase-jp">Wi-Fiのパスワードを教えてください</div><div class="phrase-ro">Wi-Fi no pasu-wa-do wo oshiete kudasai</div><button class="speak-btn" onclick="speak('Wi-Fiのパスワードを教えてください')">🔊 播放</button></div></div>
+    </div>
+  </div>
+
+  <div class="phrase-cat">
+    <div class="phrase-cat-title">💬 基本日常</div>
+    <div class="phrase-grid">
+      <div class="phrase-card"><div><div class="phrase-zh">謝謝</div><div class="phrase-jp">ありがとうございます</div><div class="phrase-ro">Arigatou gozaimasu</div><button class="speak-btn" onclick="speak('ありがとうございます')">🔊 播放</button></div><div><div class="phrase-zh">不好意思（打擾）</div><div class="phrase-jp">すみません</div><div class="phrase-ro">Sumimasen</div><button class="speak-btn" onclick="speak('すみません')">🔊 播放</button></div></div>
+      <div class="phrase-card"><div><div class="phrase-zh">好的 / 沒關係</div><div class="phrase-jp">大丈夫です</div><div class="phrase-ro">Daijoubu desu</div><button class="speak-btn" onclick="speak('大丈夫です')">🔊 播放</button></div><div><div class="phrase-zh">不要了，謝謝</div><div class="phrase-jp">結構です</div><div class="phrase-ro">Kekkou desu</div><button class="speak-btn" onclick="speak('結構です')">🔊 播放</button></div></div>
+      <div class="phrase-card"><div><div class="phrase-zh">聽不懂日文</div><div class="phrase-jp">日本語がわかりません</div><div class="phrase-ro">Nihongo ga wakarimasen</div><button class="speak-btn" onclick="speak('日本語がわかりません')">🔊 播放</button></div><div><div class="phrase-zh">可以說英文嗎？</div><div class="phrase-jp">英語で話せますか？</div><div class="phrase-ro">Eigo de hanasemasu ka?</div><button class="speak-btn" onclick="speak('英語で話せますか')">🔊 播放</button></div></div>
+      <div class="phrase-card"><div><div class="phrase-zh">拍照可以嗎？</div><div class="phrase-jp">写真を撮ってもいいですか？</div><div class="phrase-ro">Shashin wo totte mo ii desu ka?</div><button class="speak-btn" onclick="speak('写真を撮ってもいいですか')">🔊 播放</button></div><div><div class="phrase-zh">幫我們拍照好嗎？</div><div class="phrase-jp">写真を撮っていただけますか？</div><div class="phrase-ro">Shashin wo totte itadakemasu ka?</div><button class="speak-btn" onclick="speak('写真を撮っていただけますか')">🔊 播放</button></div></div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ========== EMERGENCY ========== -->
+<div class="section" id="emergency">
+
+  <p class="section-title">🆘 緊急電話</p>
+  <div class="emg-grid">
+    <div class="emg-card urgent">
+      <div class="emg-title">🚨 日本緊急救援</div>
+      <div class="emg-row"><span class="emg-label">警察（報案）</span><span class="emg-val"><a href="tel:110">110</a></span></div>
+      <div class="emg-row"><span class="emg-label">救護車 / 火警</span><span class="emg-val"><a href="tel:119">119</a></span></div>
+      <div class="emg-row"><span class="emg-label">海上保安廳</span><span class="emg-val"><a href="tel:118">118</a></span></div>
+      <div class="emg-row"><span class="emg-label">旅遊急難救助</span><span class="emg-val"><a href="tel:+886800085095">0800-085-095</a></span></div>
+    </div>
+    <div class="emg-card">
+      <div class="emg-title">🇹🇼 台灣駐日單位</div>
+      <div class="emg-row"><span class="emg-label">台北駐日代表處</span><span class="emg-val"><a href="tel:+81332808571">+81-3-3280-8571</a></span></div>
+      <div class="emg-row"><span class="emg-label">緊急聯絡（24H）</span><span class="emg-val"><a href="tel:+81362388900">+81-3-6238-8900</a></span></div>
+      <div class="emg-row"><span class="emg-label">地址</span><span class="emg-val" style="font-size:12px;">東京都港区白金台5-20-2</span></div>
+    </div>
+    <div class="emg-card">
+      <div class="emg-title">🏥 附近醫院（新宿）</div>
+      <div class="emg-row"><span class="emg-label">慶應義塾大學醫院</span><span class="emg-val" style="font-size:12px;">新宿区信濃町35</span></div>
+      <div class="emg-row"><span class="emg-label">電話</span><span class="emg-val"><a href="tel:+81353633611">03-5363-3611</a></span></div>
+      <div class="emg-row"><span class="emg-label">東京醫科大學醫院</span><span class="emg-val" style="font-size:12px;">新宿区西新宿6-7-1</span></div>
+      <div class="emg-row"><span class="emg-label">電話</span><span class="emg-val"><a href="tel:+81333426111">03-3342-6111</a></span></div>
+    </div>
+    <div class="emg-card">
+      <div class="emg-title">💊 藥局 / 其他</div>
+      <div class="emg-row"><span class="emg-label">止痛藥（日文）</span><span class="emg-val">鎮痛剤（ちんつうざい）</span></div>
+      <div class="emg-row"><span class="emg-label">腸胃藥</span><span class="emg-val">胃腸薬（いちょうやく）</span></div>
+      <div class="emg-row"><span class="emg-label">過敏藥</span><span class="emg-val">アレルギー薬</span></div>
+      <div class="emg-row"><span class="emg-label">OK 蹦</span><span class="emg-val">バンドエイド / 絆創膏</span></div>
+    </div>
+  </div>
+
+  <p class="section-title">🏨 飯店地址（給計程車看）</p>
+  <div class="emg-grid">
+    <div class="emg-card">
+      <div class="emg-title">🏨 POD SELECT HOTEL SHINJUKU</div>
+      <div class="emg-row"><span class="emg-label">入住</span><span class="emg-val">6人組</span></div>
+      <div class="emg-addr">東京都新宿区歌舞伎町<br>（抵達後請確認正確地址）</div>
+      <div style="margin-top:10px;"><a class="rest-map" href="https://www.google.com/maps/search/POD+SELECT+HOTEL+SHINJUKU" target="_blank">📍 Google Maps</a></div>
+    </div>
+    <div class="emg-card">
+      <div class="emg-title">🏨 TATESHINA 飯店</div>
+      <div class="emg-row"><span class="emg-label">入住</span><span class="emg-val">2人組</span></div>
+      <div class="emg-addr">東京都新宿区（或附近）<br>（抵達後請確認正確地址）</div>
+      <div style="margin-top:10px;"><a class="rest-map" href="https://www.google.com/maps/search/TATESHINA+hotel+Tokyo" target="_blank">📍 Google Maps</a></div>
+    </div>
+  </div>
+
+  <p class="section-title">✈️ 機場資訊</p>
+  <div class="emg-grid">
+    <div class="emg-card">
+      <div class="emg-title">羽田空港（HND）</div>
+      <div class="emg-row"><span class="emg-label">旅客服務</span><span class="emg-val"><a href="tel:+81570025071">0570-025-071</a></span></div>
+      <div class="emg-row"><span class="emg-label">遺失物</span><span class="emg-val"><a href="tel:+81364283077">03-6428-3077</a></span></div>
+    </div>
+    <div class="emg-card">
+      <div class="emg-title">成田空港（NRT）</div>
+      <div class="emg-row"><span class="emg-label">旅客服務</span><span class="emg-val"><a href="tel:+81476345000">0476-34-5000</a></span></div>
+      <div class="emg-row"><span class="emg-label">遺失物</span><span class="emg-val"><a href="tel:+81476346486">0476-34-6486</a></span></div>
+    </div>
+    <div class="emg-card">
+      <div class="emg-title">🪪 護照遺失處理</div>
+      <div class="emg-row" style="flex-direction:column; gap:4px;"><span class="emg-label">步驟：</span></div>
+      <div class="emg-addr">1. 報警（110）取得遺失證明<br>2. 聯絡台北駐日代表處<br>3. 申請「入國証明書」<br>4. 持證明書辦理緊急入境手續</div>
+    </div>
+  </div>
+
+</div>
+
+</div><!-- end content -->
+
+<script>
+// COUNTDOWN — hide after trip ends (6/15)
+function updateCountdown() {
+  const start = new Date('2026-06-10T00:00:00+09:00');
+  const end   = new Date('2026-06-15T23:59:59+09:00');
+  const now   = new Date();
+  const el    = document.getElementById('countdown');
+  if (now > end) { el.style.display = 'none'; return; }
+  if (now >= start) { el.innerHTML = '<div class="cd-msg">🎌 旅程進行中！平安出發！</div>'; return; }
+  const diff = start - now;
+  const d = Math.floor(diff / 86400000);
+  const h = Math.floor((diff % 86400000) / 3600000);
+  const m = Math.floor((diff % 3600000) / 60000);
+  const s = Math.floor((diff % 60000) / 1000);
+  el.innerHTML = `
+    <div class="cd-box"><div class="cd-num">${d}</div><div class="cd-label">天</div></div>
+    <div class="cd-box"><div class="cd-num">${String(h).padStart(2,'0')}</div><div class="cd-label">時</div></div>
+    <div class="cd-box"><div class="cd-num">${String(m).padStart(2,'0')}</div><div class="cd-label">分</div></div>
+    <div class="cd-box"><div class="cd-num">${String(s).padStart(2,'0')}</div><div class="cd-label">秒</div></div>
+  `;
+}
+updateCountdown();
+setInterval(updateCountdown, 1000);
+
+// TABS — scroll active tab into view on mobile
+document.querySelectorAll('.tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+    tab.classList.add('active');
+    document.getElementById(tab.dataset.tab).classList.add('active');
+    tab.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+});
+
+// BACK TO TOP
+const backTop = document.getElementById('backTop');
+window.addEventListener('scroll', () => {
+  backTop.classList.toggle('visible', window.scrollY > 300);
+});
+
+// COLLAPSE
+function toggleDay(id) {
+  document.getElementById(id).classList.toggle('collapsed');
+}
+
+// THEME — auto-detect system preference, button shows current state
+const html = document.documentElement;
+const btn  = document.getElementById('themeBtn');
+function applyTheme(dark) {
+  html.setAttribute('data-theme', dark ? 'dark' : 'light');
+  btn.textContent = dark ? '🌙 深色' : '☀️ 淺色';
+}
+const sysDark = window.matchMedia('(prefers-color-scheme: dark)');
+applyTheme(sysDark.matches);
+sysDark.addEventListener('change', e => applyTheme(e.matches));
+function toggleTheme() {
+  applyTheme(html.getAttribute('data-theme') !== 'dark');
+}
+
+// TTS — Japanese voice
+function speak(text) {
+  if (!window.speechSynthesis) return alert('您的瀏覽器不支援語音功能');
+  window.speechSynthesis.cancel();
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = 'ja-JP'; u.rate = 0.9;
+  const voices = speechSynthesis.getVoices();
+  const jaVoice = voices.find(v => v.lang.startsWith('ja'));
+  if (jaVoice) u.voice = jaVoice;
+  speechSynthesis.speak(u);
+}
+speechSynthesis.getVoices();
+</script>
+</body>
+</html>
