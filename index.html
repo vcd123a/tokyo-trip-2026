@@ -86,8 +86,8 @@ body { font-family: 'Noto Sans TC', sans-serif; background: var(--bg); color: va
 .weather-day .wd-icon { font-size: 16px; line-height: 1; }
 .weather-day .wd-temp { font-size: 10px; color: rgba(255,255,255,0.7); margin-top: 3px; }
 
-/* SHARE BUTTON — small, under theme toggle */
-.share-btn { position: absolute; top: 58px; right: 20px; background: rgba(255,255,255,0.1); color: rgba(255,255,255,0.8); border: 1px solid rgba(255,255,255,0.2); border-radius: 20px; padding: 5px 11px; font-size: 11px; font-family: 'Noto Sans TC', sans-serif; cursor: pointer; z-index: 10; transition: background 0.2s; white-space: nowrap; }
+/* SHARE BUTTON — grouped with theme toggle */
+.share-btn { background: rgba(255,255,255,0.1); color: rgba(255,255,255,0.85); border: 1px solid rgba(255,255,255,0.2); border-radius: 20px; padding: 6px 11px; font-size: 12px; font-family: 'Noto Sans TC', sans-serif; cursor: pointer; transition: background 0.2s; white-space: nowrap; }
 .share-btn:hover { background: rgba(255,255,255,0.2); }
 .share-toast { position: fixed; bottom: 80px; left: 50%; transform: translateX(-50%); background: rgba(0,0,0,0.75); color: #fff; font-size: 13px; padding: 8px 18px; border-radius: 20px; pointer-events: none; opacity: 0; transition: opacity 0.3s; z-index: 300; white-space: nowrap; }
 .share-toast.show { opacity: 1; }
@@ -104,7 +104,8 @@ body { font-family: 'Noto Sans TC', sans-serif; background: var(--bg); color: va
 .back-top.visible { display: flex; }
 
 /* THEME TOGGLE */
-.theme-btn { position: absolute; top: 20px; right: 20px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: #fff; padding: 8px 14px; border-radius: 20px; cursor: pointer; font-size: 13px; font-family: 'Noto Sans TC', sans-serif; transition: all 0.2s; z-index: 10; }
+.hero-btns { position: absolute; top: 16px; right: 16px; display: flex; gap: 6px; z-index: 10; flex-wrap: nowrap; }
+.theme-btn { background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: #fff; padding: 6px 12px; border-radius: 20px; cursor: pointer; font-size: 12px; font-family: 'Noto Sans TC', sans-serif; transition: all 0.2s; white-space: nowrap; }
 .theme-btn:hover { background: rgba(255,255,255,0.2); }
 
 /* TABS */
@@ -198,9 +199,14 @@ body { font-family: 'Noto Sans TC', sans-serif; background: var(--bg); color: va
 [data-theme="dark"] .notice-warn { background: #2a2008; color: #c0a040; }
 
 /* RESTAURANT */
-.rest-region { margin-bottom: 32px; }
-.rest-region h3 { font-size: 15px; font-weight: 700; color: var(--text); border-left: 3px solid var(--red); padding-left: 12px; margin-bottom: 14px; }
-.rest-grid { display: grid; gap: 12px; }
+.rest-region { margin-bottom: 10px; border: 1px solid var(--border); border-radius: 12px; overflow: hidden; background: var(--card); }
+.rest-region-header { display: flex; align-items: center; justify-content: space-between; padding: 13px 16px; cursor: pointer; user-select: none; }
+.rest-region-header h3 { font-size: 15px; font-weight: 700; color: var(--text); border-left: 3px solid var(--red); padding-left: 10px; margin: 0; }
+.rest-toggle { font-size: 16px; color: var(--muted); transition: transform 0.3s; }
+.rest-region.collapsed .rest-toggle { transform: rotate(-90deg); }
+.rest-region-body { padding: 0 14px 14px; }
+.rest-region.collapsed .rest-region-body { display: none; }
+.rest-grid { display: grid; gap: 10px; }
 .rest-card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 14px 16px; display: grid; grid-template-columns: 1fr auto; gap: 8px; align-items: start; }
 .rest-name { font-weight: 600; font-size: 14px; margin-bottom: 4px; color: var(--text); }
 .rest-detail { font-size: 12px; color: var(--muted); }
@@ -259,8 +265,10 @@ body { font-family: 'Noto Sans TC', sans-serif; background: var(--bg); color: va
   <div class="hero-dots"></div>
   <div class="hero-glow"></div>
   <div class="hero-skyline"></div>
-  <button class="theme-btn" onclick="toggleTheme()" id="themeBtn">🌙 深色</button>
-  <button class="share-btn" onclick="shareTrip()">📤 分享</button>
+  <div class="hero-btns">
+    <button class="theme-btn" onclick="toggleTheme()" id="themeBtn">🌙 深色</button>
+    <button class="share-btn" onclick="shareTrip()">📤 分享</button>
+  </div>
   <p class="hero-tag">Japan · Tokyo · 2026</p>
   <h1>東京六日遊</h1>
   <p class="hero-sub">下町 &nbsp;·&nbsp; 鐵塔 &nbsp;·&nbsp; 澀谷 &nbsp;·&nbsp; 秋葉原 &nbsp;·&nbsp; 銀座 &nbsp;·&nbsp; 表參道</p>
@@ -839,42 +847,66 @@ body { font-family: 'Noto Sans TC', sans-serif; background: var(--bg); color: va
 
 <!-- ========== RESTAURANT ========== -->
 <div class="section" id="restaurant">
-  <div class="rest-region"><h3>淺草</h3><div class="rest-grid">
-    <div class="rest-card"><div><div class="rest-name">亀十（かめじゅう）</div><div class="rest-detail">銅鑼燒</div><div class="rest-hours">10:00–18:00</div><a class="rest-map" href="https://www.google.com/maps/search/亀十+浅草" target="_blank">📍 Google Maps</a></div><div><div class="rest-rating">★ 4.4</div><div class="rest-price">¥500</div></div></div>
-    <div class="rest-card"><div><div class="rest-name">大黒家天麩羅</div><div class="rest-detail">江戶前天丼（1887創業）</div><div class="rest-hours">11:00–20:30</div><a class="rest-map" href="https://www.google.com/maps/search/大黒家天麩羅+浅草" target="_blank">📍 Google Maps</a></div><div><div class="rest-rating">★ 4.2</div><div class="rest-price">¥1,800+</div></div></div>
-    <div class="rest-card"><div><div class="rest-name">洋食屋 ヨシカミ</div><div class="rest-detail">老舖洋食（1951創業）</div><div class="rest-hours">11:45–22:00</div><a class="rest-map" href="https://www.google.com/maps/search/ヨシカミ+浅草" target="_blank">📍 Google Maps</a></div><div><div class="rest-rating">★ 4.0</div><div class="rest-price">¥1,500+</div></div></div>
-  </div></div>
-  <div class="rest-region"><h3>根津・上野</h3><div class="rest-grid">
-    <div class="rest-card"><div><div class="rest-name">はん亭 根津本店</div><div class="rest-detail">串揚げ・有形文化財建築</div><div class="rest-hours">11:30–14:00 / 17:00–21:00</div><a class="rest-map" href="https://www.google.com/maps/search/はん亭+根津" target="_blank">📍 Google Maps</a></div><div><div class="rest-rating">★ 4.2</div><div class="rest-price">¥4,000+</div></div></div>
-    <div class="rest-card"><div><div class="rest-name">上野 精養軒</div><div class="rest-detail">老舖洋食（1872創業）</div><div class="rest-hours">11:00–20:30</div><a class="rest-map" href="https://www.google.com/maps/search/上野精養軒" target="_blank">📍 Google Maps</a></div><div><div class="rest-rating">★ 4.0</div><div class="rest-price">¥3,000+</div></div></div>
-  </div></div>
-  <div class="rest-region"><h3>豊洲</h3><div class="rest-grid">
-    <div class="rest-card"><div><div class="rest-name">豊洲場外食堂 魚金</div><div class="rest-detail">海鮮料理・海鮮丼</div><div class="rest-hours">11:00–23:00</div><a class="rest-map" href="https://www.google.com/maps/search/魚金+豊洲" target="_blank">📍 Google Maps</a></div><div><div class="rest-rating">★ 4.0</div><div class="rest-price">¥2,000+</div></div></div>
-    <div class="rest-card"><div><div class="rest-name">SCHMALZ BEER DINING</div><div class="rest-detail">德式料理・精釀啤酒</div><div class="rest-hours">11:30–23:00</div><a class="rest-map" href="https://www.google.com/maps/search/SCHMALZ+BEER+DINING+豊洲" target="_blank">📍 Google Maps</a></div><div><div class="rest-rating">★ 4.1</div><div class="rest-price">¥2,000+</div></div></div>
-    <div class="rest-card"><div><div class="rest-name">京鼎樓（ジンディンロウ）</div><div class="rest-detail">小籠包・台式料理</div><div class="rest-hours">11:00–22:00</div><a class="rest-map" href="https://www.google.com/maps/search/京鼎樓+豊洲" target="_blank">📍 Google Maps</a></div><div><div class="rest-rating">★ 4.0</div><div class="rest-price">¥1,500+</div></div></div>
-    <div class="rest-card"><div><div class="rest-name">Aloha Table</div><div class="rest-detail">夏威夷料理・Loco Moco</div><div class="rest-hours">11:00–22:00</div><a class="rest-map" href="https://www.google.com/maps/search/Aloha+Table+豊洲" target="_blank">📍 Google Maps</a></div><div><div class="rest-rating">★ 3.9</div><div class="rest-price">¥1,500+</div></div></div>
-  </div></div>
-  <div class="rest-region"><h3>築地</h3><div class="rest-grid">
-    <div class="rest-card"><div><div class="rest-name">壽司大（すしだい）</div><div class="rest-detail">高 CP 握壽司</div><div class="rest-hours">05:00–14:00</div><a class="rest-map" href="https://www.google.com/maps/search/すしだい+築地" target="_blank">📍 Google Maps</a></div><div><div class="rest-rating">★ 4.6</div><div class="rest-price">¥4,000</div></div></div>
-  </div></div>
-  <div class="rest-region"><h3>銀座</h3><div class="rest-grid">
-    <div class="rest-card"><div><div class="rest-name">煉瓦亭</div><div class="rest-detail">老舖洋食・蛋包飯（1895創業）</div><div class="rest-hours">11:15–21:00</div><a class="rest-map" href="https://www.google.com/maps/search/煉瓦亭+銀座" target="_blank">📍 Google Maps</a></div><div><div class="rest-rating">★ 4.2</div><div class="rest-price">¥3,000+</div></div></div>
-    <div class="rest-card"><div><div class="rest-name">銀座 篝（かがり）</div><div class="rest-detail">雞白湯拉麵・米其林</div><div class="rest-hours">11:00–22:00</div><a class="rest-map" href="https://www.google.com/maps/search/銀座篝+ラーメン" target="_blank">📍 Google Maps</a></div><div><div class="rest-rating">★ 4.4</div><div class="rest-price">¥1,500+</div></div></div>
-  </div></div>
-  <div class="rest-region"><h3>表參道・原宿</h3><div class="rest-grid">
-    <div class="rest-card"><div><div class="rest-name">LOTUS 原宿</div><div class="rest-detail">カフェ・洋食・くまショコラ</div><div class="rest-hours">11:00–22:00</div><a class="rest-map" href="https://www.google.com/maps/search/LOTUS+原宿" target="_blank">📍 Google Maps</a></div><div><div class="rest-rating">★ 4.1</div><div class="rest-price">¥1,500+</div></div></div>
-    <div class="rest-card"><div><div class="rest-name">パンとエスプレッソと</div><div class="rest-detail">麵包咖啡・テラス席</div><div class="rest-hours">08:00–20:00</div><a class="rest-map" href="https://www.google.com/maps/search/パンとエスプレッソと+表参道" target="_blank">📍 Google Maps</a></div><div><div class="rest-rating">★ 4.1</div><div class="rest-price">¥1,200+</div></div></div>
-    <div class="rest-card"><div><div class="rest-name">Nicolai Bergmann NOMU</div><div class="rest-detail">花藝咖啡・甜點</div><div class="rest-hours">11:00–20:00</div><a class="rest-map" href="https://www.google.com/maps/search/Nicolai+Bergmann+NOMU+表参道" target="_blank">📍 Google Maps</a></div><div><div class="rest-rating">★ 4.3</div><div class="rest-price">¥1,500+</div></div></div>
-    <div class="rest-card"><div><div class="rest-name">BUTTER MILK CHANNEL</div><div class="rest-detail">フライドチキン＆ワッフル</div><div class="rest-hours">11:00–21:00</div><a class="rest-map" href="https://www.google.com/maps/search/BUTTER+MILK+CHANNEL+原宿" target="_blank">📍 Google Maps</a></div><div><div class="rest-rating">★ 4.2</div><div class="rest-price">¥1,800+</div></div></div>
-  </div></div>
-  <div class="rest-region"><h3>新宿</h3><div class="rest-grid">
-    <div class="rest-card"><div><div class="rest-name">新宿中村屋 割烹</div><div class="rest-detail">老舖和食</div><div class="rest-hours">11:00–21:00</div><a class="rest-map" href="https://www.google.com/maps/search/新宿中村屋" target="_blank">📍 Google Maps</a></div><div><div class="rest-rating">★ 4.1</div><div class="rest-price">¥3,000+</div></div></div>
-    <div class="rest-card"><div><div class="rest-name">Golden Gai 各店</div><div class="rest-detail">小酒吧</div><div class="rest-hours">19:00–02:00</div><a class="rest-map" href="https://www.google.com/maps/search/新宿ゴールデン街" target="_blank">📍 Google Maps</a></div><div><div class="rest-rating">–</div><div class="rest-price">¥1,000–2,000</div></div></div>
-  </div></div>
-  <div class="rest-region"><h3>秋葉原</h3><div class="rest-grid">
-    <div class="rest-card"><div><div class="rest-name">万世ハンバーグ</div><div class="rest-detail">和牛漢堡排</div><div class="rest-hours">11:00–22:30</div><a class="rest-map" href="https://www.google.com/maps/search/万世ハンバーグ+秋葉原" target="_blank">📍 Google Maps</a></div><div><div class="rest-rating">★ 4.1</div><div class="rest-price">¥1,500</div></div></div>
-    <div class="rest-card"><div><div class="rest-name">鳥貴族 秋葉原店</div><div class="rest-detail">焼き鳥</div><div class="rest-hours">17:00–01:00</div><a class="rest-map" href="https://www.google.com/maps/search/鳥貴族+秋葉原" target="_blank">📍 Google Maps</a></div><div><div class="rest-rating">★ 3.9</div><div class="rest-price">¥1,000</div></div></div>
-  </div></div>
+  <div class="rest-region collapsed" id="rr1">
+    <div class="rest-region-header" onclick="toggleRest('rr1')"><h3>淺草</h3><span class="rest-toggle">▾</span></div>
+    <div class="rest-region-body"><div class="rest-grid">
+      <div class="rest-card"><div><div class="rest-name">亀十（かめじゅう）</div><div class="rest-detail">銅鑼燒</div><div class="rest-hours">10:00–18:00</div><a class="rest-map" href="https://www.google.com/maps/search/亀十+浅草" target="_blank">📍 Google Maps</a></div><div><div class="rest-rating">★ 4.4</div><div class="rest-price">¥500</div></div></div>
+      <div class="rest-card"><div><div class="rest-name">大黒家天麩羅</div><div class="rest-detail">江戶前天丼（1887創業）</div><div class="rest-hours">11:00–20:30</div><a class="rest-map" href="https://www.google.com/maps/search/大黒家天麩羅+浅草" target="_blank">📍 Google Maps</a></div><div><div class="rest-rating">★ 4.2</div><div class="rest-price">¥1,800+</div></div></div>
+      <div class="rest-card"><div><div class="rest-name">洋食屋 ヨシカミ</div><div class="rest-detail">老舖洋食（1951創業）</div><div class="rest-hours">11:45–22:00</div><a class="rest-map" href="https://www.google.com/maps/search/ヨシカミ+浅草" target="_blank">📍 Google Maps</a></div><div><div class="rest-rating">★ 4.0</div><div class="rest-price">¥1,500+</div></div></div>
+    </div></div>
+  </div>
+  <div class="rest-region collapsed" id="rr2">
+    <div class="rest-region-header" onclick="toggleRest('rr2')"><h3>根津・上野</h3><span class="rest-toggle">▾</span></div>
+    <div class="rest-region-body"><div class="rest-grid">
+      <div class="rest-card"><div><div class="rest-name">はん亭 根津本店</div><div class="rest-detail">串揚げ・有形文化財建築</div><div class="rest-hours">11:30–14:00 / 17:00–21:00</div><a class="rest-map" href="https://www.google.com/maps/search/はん亭+根津" target="_blank">📍 Google Maps</a></div><div><div class="rest-rating">★ 4.2</div><div class="rest-price">¥4,000+</div></div></div>
+      <div class="rest-card"><div><div class="rest-name">上野 精養軒</div><div class="rest-detail">老舖洋食（1872創業）</div><div class="rest-hours">11:00–20:30</div><a class="rest-map" href="https://www.google.com/maps/search/上野精養軒" target="_blank">📍 Google Maps</a></div><div><div class="rest-rating">★ 4.0</div><div class="rest-price">¥3,000+</div></div></div>
+    </div></div>
+  </div>
+  <div class="rest-region collapsed" id="rr3">
+    <div class="rest-region-header" onclick="toggleRest('rr3')"><h3>豊洲</h3><span class="rest-toggle">▾</span></div>
+    <div class="rest-region-body"><div class="rest-grid">
+      <div class="rest-card"><div><div class="rest-name">豊洲場外食堂 魚金</div><div class="rest-detail">海鮮料理・海鮮丼</div><div class="rest-hours">11:00–23:00</div><a class="rest-map" href="https://www.google.com/maps/search/魚金+豊洲" target="_blank">📍 Google Maps</a></div><div><div class="rest-rating">★ 4.0</div><div class="rest-price">¥2,000+</div></div></div>
+      <div class="rest-card"><div><div class="rest-name">SCHMALZ BEER DINING</div><div class="rest-detail">德式料理・精釀啤酒</div><div class="rest-hours">11:30–23:00</div><a class="rest-map" href="https://www.google.com/maps/search/SCHMALZ+BEER+DINING+豊洲" target="_blank">📍 Google Maps</a></div><div><div class="rest-rating">★ 4.1</div><div class="rest-price">¥2,000+</div></div></div>
+      <div class="rest-card"><div><div class="rest-name">京鼎樓（ジンディンロウ）</div><div class="rest-detail">小籠包・台式料理</div><div class="rest-hours">11:00–22:00</div><a class="rest-map" href="https://www.google.com/maps/search/京鼎樓+豊洲" target="_blank">📍 Google Maps</a></div><div><div class="rest-rating">★ 4.0</div><div class="rest-price">¥1,500+</div></div></div>
+      <div class="rest-card"><div><div class="rest-name">Aloha Table</div><div class="rest-detail">夏威夷料理・Loco Moco</div><div class="rest-hours">11:00–22:00</div><a class="rest-map" href="https://www.google.com/maps/search/Aloha+Table+豊洲" target="_blank">📍 Google Maps</a></div><div><div class="rest-rating">★ 3.9</div><div class="rest-price">¥1,500+</div></div></div>
+    </div></div>
+  </div>
+  <div class="rest-region collapsed" id="rr4">
+    <div class="rest-region-header" onclick="toggleRest('rr4')"><h3>築地</h3><span class="rest-toggle">▾</span></div>
+    <div class="rest-region-body"><div class="rest-grid">
+      <div class="rest-card"><div><div class="rest-name">壽司大（すしだい）</div><div class="rest-detail">高 CP 握壽司</div><div class="rest-hours">05:00–14:00</div><a class="rest-map" href="https://www.google.com/maps/search/すしだい+築地" target="_blank">📍 Google Maps</a></div><div><div class="rest-rating">★ 4.6</div><div class="rest-price">¥4,000</div></div></div>
+    </div></div>
+  </div>
+  <div class="rest-region collapsed" id="rr5">
+    <div class="rest-region-header" onclick="toggleRest('rr5')"><h3>銀座</h3><span class="rest-toggle">▾</span></div>
+    <div class="rest-region-body"><div class="rest-grid">
+      <div class="rest-card"><div><div class="rest-name">煉瓦亭</div><div class="rest-detail">老舖洋食・蛋包飯（1895創業）</div><div class="rest-hours">11:15–21:00</div><a class="rest-map" href="https://www.google.com/maps/search/煉瓦亭+銀座" target="_blank">📍 Google Maps</a></div><div><div class="rest-rating">★ 4.2</div><div class="rest-price">¥3,000+</div></div></div>
+      <div class="rest-card"><div><div class="rest-name">銀座 篝（かがり）</div><div class="rest-detail">雞白湯拉麵・米其林</div><div class="rest-hours">11:00–22:00</div><a class="rest-map" href="https://www.google.com/maps/search/銀座篝+ラーメン" target="_blank">📍 Google Maps</a></div><div><div class="rest-rating">★ 4.4</div><div class="rest-price">¥1,500+</div></div></div>
+    </div></div>
+  </div>
+  <div class="rest-region collapsed" id="rr6">
+    <div class="rest-region-header" onclick="toggleRest('rr6')"><h3>表參道・原宿</h3><span class="rest-toggle">▾</span></div>
+    <div class="rest-region-body"><div class="rest-grid">
+      <div class="rest-card"><div><div class="rest-name">LOTUS 原宿</div><div class="rest-detail">カフェ・洋食・くまショコラ</div><div class="rest-hours">11:00–22:00</div><a class="rest-map" href="https://www.google.com/maps/search/LOTUS+原宿" target="_blank">📍 Google Maps</a></div><div><div class="rest-rating">★ 4.1</div><div class="rest-price">¥1,500+</div></div></div>
+      <div class="rest-card"><div><div class="rest-name">パンとエスプレッソと</div><div class="rest-detail">麵包咖啡・テラス席</div><div class="rest-hours">08:00–20:00</div><a class="rest-map" href="https://www.google.com/maps/search/パンとエスプレッソと+表参道" target="_blank">📍 Google Maps</a></div><div><div class="rest-rating">★ 4.1</div><div class="rest-price">¥1,200+</div></div></div>
+      <div class="rest-card"><div><div class="rest-name">Nicolai Bergmann NOMU</div><div class="rest-detail">花藝咖啡・甜點</div><div class="rest-hours">11:00–20:00</div><a class="rest-map" href="https://www.google.com/maps/search/Nicolai+Bergmann+NOMU+表参道" target="_blank">📍 Google Maps</a></div><div><div class="rest-rating">★ 4.3</div><div class="rest-price">¥1,500+</div></div></div>
+      <div class="rest-card"><div><div class="rest-name">BUTTER MILK CHANNEL</div><div class="rest-detail">フライドチキン＆ワッフル</div><div class="rest-hours">11:00–21:00</div><a class="rest-map" href="https://www.google.com/maps/search/BUTTER+MILK+CHANNEL+原宿" target="_blank">📍 Google Maps</a></div><div><div class="rest-rating">★ 4.2</div><div class="rest-price">¥1,800+</div></div></div>
+    </div></div>
+  </div>
+  <div class="rest-region collapsed" id="rr7">
+    <div class="rest-region-header" onclick="toggleRest('rr7')"><h3>新宿</h3><span class="rest-toggle">▾</span></div>
+    <div class="rest-region-body"><div class="rest-grid">
+      <div class="rest-card"><div><div class="rest-name">新宿中村屋 割烹</div><div class="rest-detail">老舖和食</div><div class="rest-hours">11:00–21:00</div><a class="rest-map" href="https://www.google.com/maps/search/新宿中村屋" target="_blank">📍 Google Maps</a></div><div><div class="rest-rating">★ 4.1</div><div class="rest-price">¥3,000+</div></div></div>
+      <div class="rest-card"><div><div class="rest-name">Golden Gai 各店</div><div class="rest-detail">小酒吧</div><div class="rest-hours">19:00–02:00</div><a class="rest-map" href="https://www.google.com/maps/search/新宿ゴールデン街" target="_blank">📍 Google Maps</a></div><div><div class="rest-rating">–</div><div class="rest-price">¥1,000–2,000</div></div></div>
+    </div></div>
+  </div>
+  <div class="rest-region collapsed" id="rr8">
+    <div class="rest-region-header" onclick="toggleRest('rr8')"><h3>秋葉原</h3><span class="rest-toggle">▾</span></div>
+    <div class="rest-region-body"><div class="rest-grid">
+      <div class="rest-card"><div><div class="rest-name">万世ハンバーグ</div><div class="rest-detail">和牛漢堡排</div><div class="rest-hours">11:00–22:30</div><a class="rest-map" href="https://www.google.com/maps/search/万世ハンバーグ+秋葉原" target="_blank">📍 Google Maps</a></div><div><div class="rest-rating">★ 4.1</div><div class="rest-price">¥1,500</div></div></div>
+      <div class="rest-card"><div><div class="rest-name">鳥貴族 秋葉原店</div><div class="rest-detail">焼き鳥</div><div class="rest-hours">17:00–01:00</div><a class="rest-map" href="https://www.google.com/maps/search/鳥貴族+秋葉原" target="_blank">📍 Google Maps</a></div><div><div class="rest-rating">★ 3.9</div><div class="rest-price">¥1,000</div></div></div>
+    </div></div>
+  </div>
 </div>
 
 <!-- ========== SHOPPING ========== -->
@@ -1011,14 +1043,16 @@ body { font-family: 'Noto Sans TC', sans-serif; background: var(--bg); color: va
     <div class="emg-card">
       <div class="emg-title">🏨 POD SELECT HOTEL SHINJUKU</div>
       <div class="emg-row"><span class="emg-label">入住</span><span class="emg-val">6人組</span></div>
-      <div class="emg-addr">東京都新宿区歌舞伎町<br>（抵達後請確認正確地址）</div>
-      <div style="margin-top:10px;"><a class="rest-map" href="https://www.google.com/maps/search/POD+SELECT+HOTEL+SHINJUKU" target="_blank">📍 Google Maps</a></div>
+      <div class="emg-row"><span class="emg-label">電話</span><span class="emg-val"><a href="tel:+81353621010">03-5362-1010</a></span></div>
+      <div class="emg-addr">〒160-0022<br>東京都新宿区新宿2-12-12</div>
+      <div style="margin-top:10px;"><a class="rest-map" href="https://maps.app.goo.gl/QpzV9jvXHmBeDtVF7" target="_blank">📍 Google Maps</a></div>
     </div>
     <div class="emg-card">
-      <div class="emg-title">🏨 TATESHINA 飯店</div>
+      <div class="emg-title">🏨 ホテルたてしな（TATESHINA）</div>
       <div class="emg-row"><span class="emg-label">入住</span><span class="emg-val">2人組</span></div>
-      <div class="emg-addr">東京都新宿区（或附近）<br>（抵達後請確認正確地址）</div>
-      <div style="margin-top:10px;"><a class="rest-map" href="https://www.google.com/maps/search/TATESHINA+hotel+Tokyo" target="_blank">📍 Google Maps</a></div>
+      <div class="emg-row"><span class="emg-label">電話</span><span class="emg-val"><a href="tel:+81333505271">03-3350-5271</a></span></div>
+      <div class="emg-addr">〒160-0022<br>東京都新宿区新宿5-8-6</div>
+      <div style="margin-top:10px;"><a class="rest-map" href="https://maps.app.goo.gl/tbJJYUyA76kxfN9e9" target="_blank">📍 Google Maps</a></div>
     </div>
   </div>
 
@@ -1087,8 +1121,13 @@ window.addEventListener('scroll', () => {
   backTop.classList.toggle('visible', window.scrollY > 300);
 });
 
-// COLLAPSE
+// COLLAPSE DAY
 function toggleDay(id) {
+  document.getElementById(id).classList.toggle('collapsed');
+}
+
+// COLLAPSE RESTAURANT
+function toggleRest(id) {
   document.getElementById(id).classList.toggle('collapsed');
 }
 
