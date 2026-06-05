@@ -249,6 +249,34 @@ body { font-family: 'Noto Sans TC', sans-serif; background: var(--bg); color: va
 .emg-addr { font-size: 12px; color: var(--muted); margin-top: 8px; line-height: 1.6; }
 .section-title { font-family: 'Noto Serif TC', serif; font-size: 18px; font-weight: 600; color: var(--text); margin-bottom: 16px; padding-bottom: 8px; border-bottom: 1px solid var(--border); }
 
+/* COUPON */
+.coupon-intro { background: linear-gradient(135deg, #1a1a2e 0%, #c0392b 100%); color: #fff; border-radius: 14px; padding: 20px 22px; margin-bottom: 20px; }
+.coupon-intro h2 { font-size: 16px; font-weight: 700; margin-bottom: 6px; }
+.coupon-intro p { font-size: 13px; opacity: 0.8; line-height: 1.6; }
+.coupon-group { margin-bottom: 28px; }
+.coupon-group-title { font-size: 15px; font-weight: 700; color: var(--text); margin-bottom: 12px; padding-bottom: 8px; border-bottom: 2px solid var(--red); display: flex; align-items: center; gap: 8px; }
+.coupon-cards { display: grid; gap: 12px; }
+.coupon-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 16px 18px; display: grid; grid-template-columns: auto 1fr; gap: 14px; align-items: start; }
+.coupon-icon { font-size: 28px; line-height: 1; }
+.coupon-name { font-weight: 700; font-size: 15px; color: var(--text); margin-bottom: 4px; }
+.coupon-desc { font-size: 12px; color: var(--muted); line-height: 1.6; margin-bottom: 8px; }
+.coupon-badge { display: inline-flex; align-items: center; gap: 4px; font-size: 11px; font-weight: 700; padding: 3px 9px; border-radius: 10px; margin-right: 4px; margin-bottom: 4px; }
+.badge-green { background: #dcfce7; color: #166534; }
+.badge-red { background: #fee2e2; color: #991b1b; }
+.badge-blue { background: #dbeafe; color: #1e40af; }
+.badge-yellow { background: #fef9c3; color: #854d0e; }
+[data-theme="dark"] .badge-green { background: #082010; color: #40b870; }
+[data-theme="dark"] .badge-red { background: #2a0808; color: #e06060; }
+[data-theme="dark"] .badge-blue { background: #081830; color: #60a0e0; }
+[data-theme="dark"] .badge-yellow { background: #282008; color: #c0a040; }
+.coupon-link { display: inline-flex; align-items: center; gap: 4px; font-size: 11px; font-weight: 600; color: var(--transit-text); background: var(--transit-bg); padding: 4px 10px; border-radius: 8px; text-decoration: none; margin-top: 6px; }
+.tax-free-box { background: var(--card); border: 2px solid var(--red); border-radius: 12px; padding: 16px 18px; margin-bottom: 20px; }
+.tax-free-title { font-weight: 700; font-size: 15px; color: var(--red); margin-bottom: 10px; }
+.tax-free-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 10px; }
+.tax-free-item { background: var(--bg); border-radius: 8px; padding: 10px 12px; }
+.tax-free-item .tf-label { font-size: 11px; color: var(--muted); margin-bottom: 4px; }
+.tax-free-item .tf-val { font-size: 14px; font-weight: 700; color: var(--text); }
+
 @media (max-width: 600px) {
   .hero h1 { font-size: 30px; }
   .hero::before { font-size: 120px; }
@@ -286,6 +314,7 @@ body { font-family: 'Noto Sans TC', sans-serif; background: var(--bg); color: va
   <div class="tab" data-tab="shopping">🛍 必買清單</div>
   <div class="tab" data-tab="japanese">🗣 日文會話</div>
   <div class="tab" data-tab="emergency">🆘 緊急資訊</div>
+  <div class="tab" data-tab="coupon">🎫 折扣優惠</div>
 </nav>
 
 <button class="back-top" id="backTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
@@ -501,6 +530,21 @@ body { font-family: 'Noto Sans TC', sans-serif; background: var(--bg); color: va
           <div class="item-header"><span class="item-cat cat-food">晚餐</span><span class="item-name">Yakiniku Hormone Bondz Akasaka — 超頂和牛燒肉</span></div>
           <span class="item-booking">Gmail 已訂 8 位</span>
         </div>
+        <div class="transit-row">
+          <span class="transit-icon">🚶</span>
+          <span class="transit-text"><strong>赤坂 → 7-11 芝3丁目（東京鐵塔打卡）</strong>　步行 or 地鐵　約 10–15 分　¥180</span>
+          <a class="transit-map-btn" href="https://www.google.com/maps/dir/?api=1&origin=赤坂駅&destination=セブンイレブン+港区芝3丁目&travelmode=transit" target="_blank">🗺 導航</a>
+        </div>
+        <div class="item activity">
+          <div class="item-time">21:30</div>
+          <div class="item-header"><span class="item-cat cat-activity">拍照</span><span class="item-name">7-Eleven 港区芝3丁目店 — 東京鐵塔夜景打卡</span></div>
+          <div class="item-note">東京最熱門 IG 打卡點 · 便利商店＋東京鐵塔同框 · 點燈至 23:00 最美</div>
+        </div>
+        <div class="transit-row">
+          <span class="transit-icon">🚇</span>
+          <span class="transit-text"><strong>芝3丁目 → 新宿（回飯店）</strong>　都營三田線→大江戶線　約 25 分　¥220</span>
+          <a class="transit-map-btn" href="https://www.google.com/maps/dir/?api=1&origin=セブンイレブン+港区芝3丁目&destination=新宿駅&travelmode=transit" target="_blank">🗺 導航</a>
+        </div>
       </div>
     </div>
   </div>
@@ -578,15 +622,14 @@ body { font-family: 'Noto Sans TC', sans-serif; background: var(--bg); color: va
           <span class="item-booking">Gmail 已訂 8 位</span>
         </div>
         <div class="transit-row">
-          <span class="transit-icon">🚇</span>
-          <span class="transit-text"><strong>澀谷 → Bar Centifolia（新宿）</strong>　JR 山手線　約 10 分　¥160</span>
-          <a class="transit-map-btn" href="https://www.google.com/maps/dir/?api=1&origin=渋谷駅&destination=Bar+Centifolia+新宿&travelmode=transit" target="_blank">🗺 導航</a>
+          <span class="transit-icon">🚶</span>
+          <span class="transit-text"><strong>焚火家 → The Bellwood</strong>　步行　約 8 分（同在澀谷宇田川町）</span>
+          <a class="transit-map-btn" href="https://www.google.com/maps/dir/?api=1&origin=焚火家+渋谷&destination=The+Bellwood+渋谷&travelmode=walking" target="_blank">🗺 導航</a>
         </div>
         <div class="item bar">
-          <div class="item-time">23:30</div>
-          <div class="item-header"><span class="item-cat cat-bar">酒吧</span><span class="item-name">Bar Centifolia — 精選調酒 Bar</span></div>
-          <div class="item-alert">⚠ 16天前需代訂服務預約</div>
-          <div class="item-note">備案：Bar Benfiddich / 新宿 Bar Ben Fiddich</div>
+          <div class="item-time">21:30</div>
+          <div class="item-header"><span class="item-cat cat-bar">酒吧</span><span class="item-name">The Bellwood — 世界 50 大酒吧・澀谷</span></div>
+          <div class="item-note">東京都渋谷区宇田川町41-31 · 週五營業至 02:00 · 不需預約 · 調酒 ¥1,500+</div>
         </div>
       </div>
     </div>
@@ -1081,6 +1124,147 @@ body { font-family: 'Noto Sans TC', sans-serif; background: var(--bg); color: va
       <div class="emg-title">🪪 護照遺失處理</div>
       <div class="emg-row" style="flex-direction:column; gap:4px;"><span class="emg-label">步驟：</span></div>
       <div class="emg-addr">1. 報警（110）取得遺失證明<br>2. 聯絡台北駐日代表處<br>3. 申請「入國証明書」<br>4. 持證明書辦理緊急入境手續</div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ========== COUPON ========== -->
+<div class="section" id="coupon">
+
+  <div class="coupon-intro">
+    <h2>🎫 觀光客限定優惠總整理</h2>
+    <p>持台灣護照即可享有的折扣、免稅優惠與專屬 App，出發前下載好，省下不少錢！</p>
+  </div>
+
+  <div class="tax-free-box">
+    <div class="tax-free-title">🧾 免稅購物（Tax Free）怎麼用？</div>
+    <div style="font-size:13px;color:var(--muted);line-height:1.7;">持護照在貼有「Tax Free」標誌的店消費，可退還 10% 消費稅。結帳時主動出示護照說「免税でお願いします」即可。</div>
+    <div class="tax-free-row">
+      <div class="tax-free-item"><div class="tf-label">一般商品（衣服・電器・包包）</div><div class="tf-val">單店滿 ¥5,000</div></div>
+      <div class="tax-free-item"><div class="tf-label">消耗品（食品・化妝品・藥品）</div><div class="tf-val">單店滿 ¥5,000</div></div>
+      <div class="tax-free-item"><div class="tf-label">可省金額</div><div class="tf-val">約 9.09%（退 10% 稅）</div></div>
+      <div class="tax-free-item"><div class="tf-label">注意</div><div class="tf-val">消耗品需密封，入境前不可開封</div></div>
+    </div>
+  </div>
+
+  <div class="coupon-group">
+    <div class="coupon-group-title">💊 藥妝店</div>
+    <div class="coupon-cards">
+      <div class="coupon-card">
+        <div class="coupon-icon">🟢</div>
+        <div>
+          <div class="coupon-name">松本清 Matsumoto Kiyoshi</div>
+          <div class="coupon-desc">日本最大連鎖藥妝，東京各地均有。下載 App 可獲得點數，部分商品額外折扣。外國人持 Klook 優惠券可享 95 折。</div>
+          <span class="coupon-badge badge-green">✓ 免稅</span><span class="coupon-badge badge-blue">App 點數</span><span class="coupon-badge badge-yellow">Klook 95折券</span><br>
+          <a class="coupon-link" href="https://www.klook.com/zh-TW/activity/12278-matsumoto-kiyoshi-coupon-tokyo/" target="_blank">🔗 Klook 折價券</a>
+        </div>
+      </div>
+      <div class="coupon-card">
+        <div class="coupon-icon">🔵</div>
+        <div>
+          <div class="coupon-name">Sundrug / Tomod's</div>
+          <div class="coupon-desc">藥妝選品豐富，部分商品比松本清便宜。官網有免費下載折價券，可折抵部分商品。</div>
+          <span class="coupon-badge badge-green">✓ 免稅</span><span class="coupon-badge badge-blue">官網折價券</span><br>
+          <a class="coupon-link" href="https://www.sundrug.co.jp/foreign/" target="_blank">🔗 Sundrug 外國人優惠</a>
+        </div>
+      </div>
+      <div class="coupon-card">
+        <div class="coupon-icon">🟠</div>
+        <div>
+          <div class="coupon-name">AINZ & TULPE（精品美妝藥妝）</div>
+          <div class="coupon-desc">主打高端美妝與保養，澀谷、銀座均有。外國人持護照可享免稅，官網有旅客折扣。</div>
+          <span class="coupon-badge badge-green">✓ 免稅</span><span class="coupon-badge badge-red">旅客專屬折扣</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="coupon-group">
+    <div class="coupon-group-title">🦁 唐吉訶德 Don Quijote</div>
+    <div class="coupon-cards">
+      <div class="coupon-card">
+        <div class="coupon-icon">🦁</div>
+        <div>
+          <div class="coupon-name">旅客專屬 5% OFF 優惠券</div>
+          <div class="coupon-desc">至官網或 Klook 下載電子優惠券，收銀台出示享全館 5% 折扣。與免稅可同時使用，等於約 14% 折扣。新宿、澀谷、秋葉原均有分店。</div>
+          <span class="coupon-badge badge-green">✓ 免稅</span><span class="coupon-badge badge-red">5% OFF</span><span class="coupon-badge badge-yellow">可與免稅疊加</span><br>
+          <a class="coupon-link" href="https://www.donki.com/en/service/tax_free.php" target="_blank">🔗 官網領券</a>
+          <a class="coupon-link" href="https://www.klook.com/zh-TW/activity/don-quijote-coupon/" target="_blank">🔗 Klook 版本</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="coupon-group">
+    <div class="coupon-group-title">🔌 電器量販店</div>
+    <div class="coupon-cards">
+      <div class="coupon-card">
+        <div class="coupon-icon">🟡</div>
+        <div>
+          <div class="coupon-name">Yodobashi Camera / BIC Camera</div>
+          <div class="coupon-desc">外國人持護照可免稅，合計約退 10%。BIC Camera 不定期舉辦「外国人専用感謝デー」活動。Klook 有 BIC Camera 購物優惠券（通常 5–10%）。</div>
+          <span class="coupon-badge badge-green">✓ 免稅</span><span class="coupon-badge badge-blue">Klook 折扣券</span><br>
+          <a class="coupon-link" href="https://www.klook.com/zh-TW/activity/bic-camera-coupon-tokyo/" target="_blank">🔗 BIC Camera Klook</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="coupon-group">
+    <div class="coupon-group-title">🏬 百貨公司</div>
+    <div class="coupon-cards">
+      <div class="coupon-card">
+        <div class="coupon-icon">🏯</div>
+        <div>
+          <div class="coupon-name">伊勢丹新宿 Shopping Passport</div>
+          <div class="coupon-desc">至 B2 服務台出示護照，可免費領取「外国人向けショッピングパスポート」，享館內部分品牌 5–10% 折扣，部分樓層可直接免稅結帳。</div>
+          <span class="coupon-badge badge-green">✓ 免稅</span><span class="coupon-badge badge-red">免費 Shopping Passport</span><br>
+          <a class="coupon-link" href="https://www.isetan.mistore.jp/shinjuku/foreigners.html" target="_blank">🔗 伊勢丹外國人服務</a>
+        </div>
+      </div>
+      <div class="coupon-card">
+        <div class="coupon-icon">🛍</div>
+        <div>
+          <div class="coupon-name">高島屋新宿 / GINZA SIX</div>
+          <div class="coupon-desc">服務台領取外國旅客優惠卡，享部分品牌折扣與免費禮品包裝。GINZA SIX 可在 B2 服務台統一辦理免稅手續。</div>
+          <span class="coupon-badge badge-green">✓ 免稅</span><span class="coupon-badge badge-blue">旅客優惠卡</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="coupon-group">
+    <div class="coupon-group-title">📱 出發前必裝 App</div>
+    <div class="coupon-cards">
+      <div class="coupon-card">
+        <div class="coupon-icon">📲</div>
+        <div>
+          <div class="coupon-name">Visit Japan Web（日本官方入境 App）</div>
+          <div class="coupon-desc">日本政府官方 App，可數位化管理免稅紀錄與入境手續，建議出發前先註冊好帳號。</div>
+          <span class="coupon-badge badge-blue">官方</span><span class="coupon-badge badge-green">免費</span><br>
+          <a class="coupon-link" href="https://vjw-lp.digital.go.jp/zh-CHT/" target="_blank">🔗 Visit Japan Web 繁中版</a>
+        </div>
+      </div>
+      <div class="coupon-card">
+        <div class="coupon-icon">🎰</div>
+        <div>
+          <div class="coupon-name">PayPay（日本行動支付）</div>
+          <div class="coupon-desc">日本最通用行動支付，部分商家使用 PayPay 有額外折扣。可用台灣信用卡綁定儲值，便利商店、餐廳、藥妝店幾乎都支援，建議出發前設定好。</div>
+          <span class="coupon-badge badge-red">額外折扣</span><span class="coupon-badge badge-yellow">點數回饋</span><br>
+          <a class="coupon-link" href="https://paypay.ne.jp/en/" target="_blank">🔗 PayPay 官網</a>
+        </div>
+      </div>
+      <div class="coupon-card">
+        <div class="coupon-icon">🃏</div>
+        <div>
+          <div class="coupon-name">Klook / KKday 現場優惠券</div>
+          <div class="coupon-desc">松本清、唐吉訶德、BIC Camera 等均有優惠券可提前購買，通常比現場便宜，還可略過排隊手續。</div>
+          <span class="coupon-badge badge-red">5–15% OFF</span><span class="coupon-badge badge-blue">省排隊</span><br>
+          <a class="coupon-link" href="https://www.klook.com/zh-TW/city/tokyo/" target="_blank">🔗 Klook 東京優惠</a>
+          <a class="coupon-link" href="https://www.kkday.com/zh-tw/city/tokyo" target="_blank">🔗 KKday 東京優惠</a>
+        </div>
+      </div>
     </div>
   </div>
 
